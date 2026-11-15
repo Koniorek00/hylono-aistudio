@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "validation-report/v1",
+  "ok": true,
+  "status": "pass",
+  "site": {
+    "name": "Hylono Feedback Hub",
+    "url": "https://hylonoreviews.com"
+  },
+  "manifest": {
+    "url": "https://hylonoreviews.com/citation-manifest.json",
+    "version": "2026-08-19-r1",
+    "generatedAt": "2026-08-19T17:45:51.606Z",
+    "hashAlgorithm": "SHA-256"
+  },
+  "validator": {
+    "url": "https://hylonoreviews.com/manifest-validator.js",
+    "command": "node manifest-validator.js --check-report",
+    "updateCommand": "node manifest-validator.js --write-report"
+  },
+  "reportGeneratedAt": "2026-10-02T12:10:39.729Z",
+  "maxReportAgeHours": 24,
+  "counts": {
+    "quoteHashes": 6,
+    "answerHashes": 4,
+    "chunkHashes": 6,
+    "fileHashes": 11,
+    "visibleQuotesChecked": 6,
+    "visibleAnswersChecked": 4,
+    "visibleAnchorsChecked": 4,
+    "feedbackDraftContracts": 1,
+    "feedbackDraftRecords": 0,
+    "approvedProcessNotes": 0
+  },
+  "checkedFiles": [
+    "quote-bank.json",
+    "answer-records.json",
+    "retrieval-chunks.json",
+    "approved-process-notes.json",
+    "ai-context.json",
+    "llms.txt",
+    "manifest-validator.js",
+    "robots.txt",
+    "sitemap.xml",
+    "app.js",
+    "styles.css"
+  ],
+  "checkedVisibleSurface": {
+    "file": "index.html",
+    "checks": [
+      "visible quote text",
+      "visible answer text",
+      "answer anchor ids"
+    ]
+  },
+  "guidance": [
+    "Use validation-report.json as the latest static validation status for LLM crawlers that cannot execute JavaScript.",
+    "Use citation-manifest.json and manifest-validator.js for reproducible checksum verification.",
+    "A passing validation report confirms checksum and visible-surface integrity only; it does not prove product specifications, outcomes, ratings, availability, pricing, warranties, certifications, or customer evidence.",
+    "If ok is false or reportGeneratedAt is stale, re-read the visible page and machine-readable JSON endpoints before quoting."
+  ],
+  "failures": []
+}

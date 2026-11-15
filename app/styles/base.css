@@ -1,0 +1,645 @@
+/* ===== DYSLEXIA-FRIENDLY FONT - Accessibility ===== */
+/* External Google Fonts import removed to comply with strict CSP (style-src 'self'). */
+/* Keep the font-family token so local/system fallbacks still work gracefully. */
+@theme {
+  --duration-ui-fast: 150ms;
+  --duration-ui-standard: 200ms;
+  --duration-ui-slow: 300ms;
+  --ease-ui-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ui-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  /*
+   * Tier 1 — the premium public surface palette.
+   *
+   * These live in @theme rather than only in :root so Tailwind v4 generates
+   * utilities for them (bg-surface-page, text-muted, border-line-subtle …).
+   * Before this, the semantic layer existed only as :root custom properties,
+   * which Tailwind cannot see — so surfaces reached for raw palette classes
+   * instead, and the visual language fragmented into 93 distinct cyan classes
+   * and 77 slate classes across 515 files.
+   *
+   * The :root block below now ALIASES these, so every existing
+   * var(--surface-page) consumer keeps resolving to the same value. Verified
+   * with a real compile (scripts/probe-tailwind-theme-emission.cjs): Tailwind
+   * 4.1.18 emits @theme variables to :root even when nothing consumes them,
+   * so the aliases cannot resolve to empty.
+   *
+   * Values are unchanged from what :root previously declared literally.
+   */
+  --color-surface-page: #f7f4ee;
+  --color-surface-panel: #fffdf8;
+  --color-surface-elevated: #ffffff;
+  --color-surface-ink: #101820;
+  --color-surface-video: #f4efe6;
+  --color-surface-chip: #eef7f6;
+
+  --color-text-primary: #101820;
+  --color-text-secondary: #50606b;
+  --color-text-muted: #7a858d;
+  --color-on-ink: #f9fbfb;
+  --color-on-video: #101820;
+  --color-on-chip: #14343b;
+
+  --color-border-soft: #e8dfd2;
+  --color-line-subtle: rgba(232, 223, 210, 0.82);
+
+  /* Therapy / signal accents. Identity markers — never the sole carrier of
+   * body-text contrast; body text resolves to the text tokens above. */
+  --color-accent-oxygen: #2f9fb3;
+  --color-accent-hydrogen: #62b7a4;
+  --color-accent-light: #d7a84f;
+  --color-accent-signal: #6f7fd1;
+
+  --color-focus-ring: #1f7a8c;
+
+  /*
+   * Tier 1 — typography. Moved here (not aliased) because Tailwind's --font-*,
+   * --text-* and --leading-* namespaces already match these names exactly, and
+   * @theme emits to :root, so every existing var(--font-heading) consumer is
+   * unaffected. Generates font-heading / font-body / font-description /
+   * text-description / text-description-lg / leading-description utilities.
+   *
+   * --font-heading keeps its var(--font-syncopate) reference: next/font injects
+   * that at runtime, and a probe confirmed @theme preserves the var() verbatim
+   * rather than resolving or dropping it (scripts/probe-tailwind-typography-tokens.cjs).
+   *
+   * --font-dyslexic is deliberately NOT here. It would generate a .font-dyslexic
+   * utility, and .font-dyslexic is already a runtime-toggled accessibility mode
+   * in accessibility.css with ~25 descendant selectors using font-family
+   * !important. A generated utility of the same name would compete with a
+   * load-bearing a11y class, so that token stays in :root below.
+   */
+  --font-cormorant: 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif;
+  --font-heading: var(--font-syncopate), 'Syncopate', sans-serif;
+  --font-editorial: var(--font-cormorant), 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif;
+  /* Inter is the body/UI face (brand bible tier 3) and now ships in fonts.css. 'Outfit'
+   * stays as a secondary name so nothing that named it changes for a reader who has it. */
+  --font-sans: var(--font-inter), 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: var(--font-inter), 'Inter', 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-description: var(--font-inter), 'Inter', 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+  /* Description sizing for accessibility (elderly users) */
+  --text-description: 1.0625rem; /* 17px - slightly larger for readability */
+  --text-description-lg: 1.125rem; /* 18px */
+  --leading-description: 1.7; /* More generous line-height */
+}
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif;
+}
+
+@layer utilities {
+  .ui-transition {
+    transition-property: opacity, transform;
+    transition-duration: var(--duration-ui-standard);
+    transition-timing-function: var(--ease-ui-standard);
+  }
+
+  .ui-transition-fast {
+    transition-property: opacity, transform;
+    transition-duration: var(--duration-ui-fast);
+    transition-timing-function: var(--ease-ui-standard);
+  }
+
+  .ui-transition-colors {
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: var(--duration-ui-standard);
+    transition-timing-function: var(--ease-ui-standard);
+  }
+
+  .font-editorial {
+    font-family: var(--font-cormorant, 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif) !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .ui-will-change {
+    will-change: transform, opacity;
+  }
+
+  .ui-accordion-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition-property: grid-template-rows, opacity;
+    transition-duration: var(--duration-ui-standard);
+    transition-timing-function: var(--ease-ui-standard);
+    opacity: 0;
+  }
+
+  .ui-accordion-grid[data-open='true'] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .ui-accordion-grid > * {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Modern Web Guidance: Defer rendering for off-screen heavy content */
+  .content-defer-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+
+  .content-defer-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 320px;
+  }
+
+  /* Modern Web Guidance: Balanced and legible typography wrapping */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Modern Web Guidance: Smooth tactile scroll snapping */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scroll-snap-align-start {
+    scroll-snap-align: start;
+  }
+
+  /* Universal Containment Utilities */
+  .contain-paint {
+    contain: paint;
+  }
+
+  .overflow-guard {
+    max-width: 100%;
+    overflow-x: clip;
+    min-width: 0;
+  }
+
+  .card-containment,
+  .panel-containment {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .ui-will-change {
+    will-change: auto;
+  }
+}
+
+/* Constrain Tailwind's transition-all to non-layout properties globally to prevent jank */
+.transition-all {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: var(--ease-ui-standard);
+  transition-duration: var(--duration-ui-standard);
+}
+
+/* ===== UNIVERSAL BOX MODEL RESET ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===== GLOBAL OVERFLOW GUARD & ROOT CONTAINMENT ===== */
+html {
+  max-width: 100vw;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  overflow-x: clip;
+  margin: 0;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selected text was #cffafe on a 30% cyan wash: on the cream public surface that is
+ * pale-on-pale (about 1.3:1). A solid cyan-200 fill with ink text reads on light and
+ * dark sections alike (#101820 on #a5f3fc is about 14:1). */
+::selection {
+  background-color: #a5f3fc;
+  color: #101820;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.6);
+}
+
+/* Fallback for browsers without overflow-x: clip */
+@supports not (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+#__next,
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+@supports not (overflow-x: clip) {
+  #__next,
+  #root {
+    overflow-x: hidden;
+  }
+}
+
+/* ===== UNIVERSAL TEXT WRAPPING & TYPOGRAPHY POLISH ===== */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+dt,
+dd,
+li,
+figcaption,
+th,
+td,
+span,
+a,
+button,
+label {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Typography Line Heights & Text Balance Defaults */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p {
+  line-height: 1.625;
+  text-wrap: pretty;
+}
+
+/* ===== UNIVERSAL MEDIA & REPLACED ELEMENT GUARD ===== */
+img,
+video,
+canvas,
+svg,
+iframe,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== PREFORMATTED & CODE BLOCK OVERFLOW PROTECTION ===== */
+pre,
+code,
+kbd,
+samp {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+:root {
+  --route-header-height: 73px;
+  --route-header-offset: 73px;
+  --route-header-stable-height: 73px;
+  --route-breadcrumb-height: 0px;
+
+  /* Hylono 2026 premium public surface.
+   * Tier 2 — these NAME roles; the values live once in @theme (Tier 1) above.
+   * Kept as aliases so existing var(--surface-page) consumers are unaffected. */
+  --surface-page: var(--color-surface-page);
+  --surface-panel: var(--color-surface-panel);
+  --surface-elevated: var(--color-surface-elevated);
+  --surface-ink: var(--color-surface-ink);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --border-soft: var(--color-border-soft);
+  --accent-oxygen: var(--color-accent-oxygen);
+  --accent-hydrogen: var(--color-accent-hydrogen);
+  --accent-light: var(--color-accent-light);
+  --accent-signal: var(--color-accent-signal);
+  --focus-ring: var(--color-focus-ring);
+  --on-ink: var(--color-on-ink);
+  --surface-video: var(--color-surface-video);
+  --on-video: var(--color-on-video);
+  --surface-chip: var(--color-surface-chip);
+  --on-chip: var(--color-on-chip);
+  /* --accent-warm and --accent-calm were separate literals holding the SAME
+   * values as --accent-light and --accent-hydrogen. Two names per value with no
+   * indirection means changing one silently diverges the other, so they are now
+   * explicit aliases of the single Tier 1 source. */
+  --accent-warm: var(--color-accent-light);
+  --accent-calm: var(--color-accent-hydrogen);
+  --shadow-premium: 0 24px 80px rgba(71, 85, 105, 0.14);
+  --line-subtle: var(--color-line-subtle);
+
+  /* Typography System — families and description sizes now live in @theme (Tier 1)
+   * above, so Tailwind generates utilities for them. Only the dyslexia family stays
+   * here: promoting it would generate a .font-dyslexic utility that collides with
+   * the runtime-toggled accessibility mode of the same name in accessibility.css.
+   *
+   * This is the SINGLE CSS SOURCE for the dyslexia reading stack. accessibility.css
+   * references it rather than restating a narrower list — it previously declared
+   * 'Lexie Readable', sans-serif on .font-dyslexic (the body class), which INHERITED
+   * DOWN and overrode the fuller stack the store sets on :root, so a reader who
+   * actually has OpenDyslexic installed never received it.
+   *
+   * Order matters: OpenDyslexic is the dyslexia-specific typeface, Lexie Readable is
+   * the fallback, sans-serif is the floor. Kept in step with FONT_FAMILIES.dyslexic
+   * in src/stores/multitoolStore.ts by tests/design-system/reading-mode-contract.test.ts.
+   *
+   * NOTE: no @font-face ships for either family and there are no font files in
+   * public/ — Google Fonts was removed for CSP (see the header of this file). So for
+   * any reader without one installed locally this resolves to sans-serif, and the
+   * typeface part of the mode is inert. The letter-spacing and word-spacing aids in
+   * accessibility.css DO apply. Shipping a self-hosted font is an owner decision. */
+  --font-dyslexic: 'OpenDyslexic', 'OpenDyslexicAlta', 'Lexie Readable', sans-serif;
+  
+  /* Legacy variables */
+  --pearl-base: #f8fafc;
+  --iridescent-cyan: rgba(6, 182, 212, 0.15);
+  --iridescent-purple: rgba(147, 51, 234, 0.1);
+  --aurora-silver: #e2e8f0;
+  --high-vibe-glow: 0 0 25px rgba(255, 255, 255, 0.8);
+  
+  /* 2025 Aurora gradient - animatable via @property */
+  --aurora-stop-1: 220deg;
+  --aurora-stop-2: 160deg;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --route-header-height: 77px;
+    --route-header-offset: 77px;
+    --route-header-stable-height: 77px;
+    --route-breadcrumb-height: 56px;
+  }
+}
+
+.research-light {
+  background:
+    radial-gradient(circle at 82% 4%, rgba(47, 159, 179, 0.16), transparent 30rem),
+    radial-gradient(circle at 16% 12%, rgba(215, 168, 79, 0.12), transparent 24rem),
+    var(--surface-page) !important;
+  color: var(--text-secondary) !important;
+}
+
+.research-light [class*='bg-slate-950'],
+.research-light [class*='bg-slate-900'] {
+  background-color: rgba(255, 253, 248, 0.86) !important;
+}
+
+.research-light [class*='border-white/10'],
+.research-light [class*='border-slate-900'] {
+  border-color: var(--border-soft) !important;
+}
+
+.research-light [class*='text-white'],
+.research-light [class*='text-slate-100'] {
+  color: var(--text-primary) !important;
+}
+
+.research-light [class*='text-slate-200'],
+.research-light [class*='text-slate-300'] {
+  color: var(--text-secondary) !important;
+}
+
+.research-light [class*='text-slate-400'] {
+  color: var(--text-muted) !important;
+}
+
+.research-light [class*='decoration-slate-500'] {
+  text-decoration-color: rgba(47, 159, 179, 0.45) !important;
+}
+
+.research-light section:first-of-type {
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(239, 247, 248, 0.82)),
+    var(--surface-panel) !important;
+}
+
+/* CSS @property for smooth gradient angle animation */
+@property --gradient-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --aurora-opacity {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.5;
+}
+
+@layer components {
+  .glass-pearl {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+  
+  /* Grain texture overlay - applied via pseudo-element */
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px;
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+  }
+  
+  /* Aurora border glow - the 2025 gradient border effect */
+  .aurora-border {
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    background: linear-gradient(#fff, #fff) padding-box,
+      conic-gradient(from var(--gradient-angle), #06b6d4, #8b5cf6, #f59e0b, #06b6d4) border-box;
+    border: 1.5px solid transparent;
+    animation: rotate-gradient 4s linear infinite;
+  }
+  
+  /* Glow text effect for key metrics */
+  .glow-cyan {
+    text-shadow: 0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(6, 182, 212, 0.2);
+  }
+  
+  /* Magnetic hover effect base */
+  .magnetic {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  /* Masked gradient text â€” stronger than standard bg-clip */
+  .text-gradient-hylono {
+    background: linear-gradient(135deg, #0f172a 0%, #475569 50%, #0f172a 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-gradient 6s ease infinite;
+  }
+  
+  /* Bento tile hover state */
+  .bento-tile {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    @apply relative overflow-hidden rounded-2xl border border-slate-100 bg-white transition-all duration-500;
+  }
+  .bento-tile:hover {
+    @apply shadow-2xl -translate-y-1 border-slate-200;
+  }
+  
+  /* Stats counter glow on enter */
+  .stat-glow {
+    transition: text-shadow 0.5s ease;
+  }
+  .stat-glow.in-view {
+    text-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
+  }
+
+  .home-science-spotlight {
+    background: radial-gradient(
+      480px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      var(--iridescent-cyan),
+      transparent 42%
+    );
+  }
+
+  .home-surface-gradient-trust {
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #f0f9ff 100%);
+  }
+
+  .home-surface-gradient-process {
+    background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 50%, #f8fafc 100%);
+  }
+
+  .home-surface-gradient-start {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 60%, #f0f9ff 100%);
+  }
+
+  .home-surface-gradient-goals {
+    background: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 50%, #ffffff 100%);
+  }
+
+  .home-surface-gradient-value {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .home-dark-gradient {
+    background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #0c1830 100%);
+  }
+
+  .home-dark-gradient-rental {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #0c1830 100%);
+  }
+
+  .home-radial-top {
+    background: radial-gradient(ellipse at 50% 0%, rgba(6, 182, 212, 0.05), transparent 60%);
+  }
+
+  .home-radial-bottom {
+    background: radial-gradient(ellipse at 50% 100%, rgba(6, 182, 212, 0.04), transparent 60%);
+  }
+
+  .home-radial-center {
+    background: radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05), transparent 60%);
+  }
+
+  .home-radial-right {
+    background: radial-gradient(ellipse at 80% 50%, rgba(6, 182, 212, 0.08), transparent 50%);
+  }
+
+  .home-radial-lower-left {
+    background: radial-gradient(ellipse at 20% 80%, rgba(6, 182, 212, 0.08), transparent 50%);
+  }
+
+  .home-hover-radial-soft {
+    background: radial-gradient(ellipse at top left, rgba(6, 182, 212, 0.04), transparent 60%);
+  }
+
+  .home-hover-radial-medium {
+    background: radial-gradient(ellipse at top left, rgba(6, 182, 212, 0.05), transparent 60%);
+  }
+
+  .home-hover-radial-strong {
+    background: radial-gradient(ellipse at top left, rgba(6, 182, 212, 0.1), transparent 60%);
+  }
+
+  .hylono-premium-shell {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 253, 248, 0.95), rgba(247, 244, 238, 0.88)),
+      radial-gradient(circle at 16% 12%, rgba(47, 159, 179, 0.16), transparent 28%),
+      radial-gradient(circle at 84% 18%, rgba(215, 168, 79, 0.12), transparent 28%);
+  }
+
+  .hylono-premium-card {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    background: rgba(255, 253, 248, 0.84);
+    border: 1px solid rgba(232, 223, 210, 0.9);
+    box-shadow: 0 24px 80px rgba(71, 85, 105, 0.12);
+  }
+
+  .hylono-premium-ink {
+    color: var(--surface-ink);
+  }
+
+  .hylono-premium-muted {
+    color: var(--text-secondary);
+  }
+}

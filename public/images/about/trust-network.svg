@@ -1,0 +1,37 @@
+<svg width="360" height="240" viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="trustLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#64748b" stop-opacity="0.15" />
+    </linearGradient>
+    <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Network lines -->
+  <line x1="12" y1="48" x2="180" y2="135" stroke="url(#trustLineGrad)" stroke-width="1.2" stroke-dasharray="2 3" />
+  <line x1="180" y1="135" x2="340" y2="190" stroke="url(#trustLineGrad)" stroke-width="1.2" stroke-dasharray="2 3" />
+  <line x1="180" y1="135" x2="220" y2="30" stroke="url(#trustLineGrad)" stroke-width="1" stroke-dasharray="1 3" />
+
+  <!-- Node 1 -->
+  <circle cx="12" cy="48" r="4" fill="#06b6d4" filter="url(#nodeGlow)" />
+  <circle cx="12" cy="48" r="1.5" fill="#ffffff" />
+
+  <!-- Node 2 (Center) -->
+  <circle cx="180" cy="135" r="4.5" fill="#0ea5e9" filter="url(#nodeGlow)" />
+  <circle cx="180" cy="135" r="2" fill="#ffffff" />
+
+  <!-- Node 3 (Far right) -->
+  <circle cx="340" cy="190" r="3.5" fill="#38bdf8" filter="url(#nodeGlow)" />
+  <circle cx="340" cy="190" r="1.5" fill="#ffffff" />
+
+  <!-- Node 4 (Top right) -->
+  <circle cx="220" cy="30" r="3" fill="#06b6d4" opacity="0.8" />
+  <circle cx="220" cy="30" r="1" fill="#ffffff" />
+</svg>

@@ -1,0 +1,14 @@
+# robots.txt for Hylono Reviews Standalone Site
+User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /ai-context.json
+Allow: /quote-bank.json
+Allow: /answer-records.json
+Allow: /retrieval-chunks.json
+Allow: /approved-process-notes.json
+Allow: /citation-manifest.json
+Allow: /manifest-validator.js
+Allow: /validation-report.json
+
+Sitemap: https://hylonoreviews.com/sitemap.xml

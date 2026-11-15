@@ -1,0 +1,1086 @@
+.blogPage {
+  background-color: #ffffff;
+  min-height: 100vh;
+  color: #0f172a;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.serifHeadline {
+  font-family: var(--font-cormorant), "Cormorant Garamond", "Playfair Display", Didot, Georgia, serif !important;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  text-transform: none !important;
+}
+
+/* ==========================================================================
+   1. HERO SECTION (FULL BLEED)
+   ========================================================================== */
+
+.heroFullBleed {
+  position: relative;
+  width: 100%;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  z-index: 1;
+}
+
+.heroFullGradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 36%,
+    rgba(255, 255, 255, 0.94) 48%,
+    rgba(255, 255, 255, 0.6) 64%,
+    rgba(255, 255, 255, 0.1) 85%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+@media (max-width: 1023px) {
+  .heroFullGradient {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.96) 65%,
+      rgba(255, 255, 255, 0.85) 100%
+    );
+  }
+}
+
+.heroInner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 5rem 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.55fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    padding: 3.5rem 1.25rem;
+    gap: 2.5rem;
+  }
+}
+
+.kickerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.kicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.kickerLine {
+  width: 2.25rem;
+  height: 1px;
+  background-color: #94a3b8;
+  margin-top: 0.375rem;
+}
+
+.heroTitle {
+  font-family: var(--font-cormorant), "Cormorant Garamond", "Playfair Display", Didot, Georgia, serif !important;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 1.06;
+  font-weight: 500;
+  color: #090e17;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  text-transform: none !important;
+}
+
+.heroDescription {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #475569;
+  max-width: 38rem;
+  margin-bottom: 2.25rem;
+}
+
+.btnGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.primaryPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0.6875rem 1.625rem;
+  background-color: #090e17;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(9, 14, 23, 0.2);
+}
+
+.primaryPill:hover {
+  background-color: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(9, 14, 23, 0.25);
+  color: #ffffff;
+}
+
+.secondaryPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0.6875rem 1.625rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #1e293b;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.secondaryPill:hover {
+  background-color: #ffffff;
+  border-color: #475569;
+  color: #090e17;
+  transform: translateY(-1px);
+}
+
+/* HERO STATS TIMELINE ON RIGHT */
+.statsTimeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-left: 2.25rem;
+}
+
+.statsTimeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background-color: rgba(100, 116, 139, 0.4);
+}
+
+@media (max-width: 1023px) {
+  .statsTimeline {
+    flex-direction: row;
+    padding-left: 0;
+    padding-top: 1.75rem;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .statsTimeline::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: 1px;
+  }
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -2.4375rem;
+  top: 0.75rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: #090e17;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1023px) {
+  .timelineDot {
+    display: none;
+  }
+}
+
+.timelineNumber {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Didot, Georgia, serif !important;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 500;
+  color: #090e17;
+}
+
+.timelineLabel {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin-top: 0.375rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   2. PATH GUIDANCE CARDS (TEXT OVER IMAGE ARCHITECTURE)
+   ========================================================================== */
+
+.pathSection {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem 1.5rem;
+}
+
+.pathHeader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+.pathHeaderSplit {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .pathHeaderSplit {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.pathGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 1023px) {
+  .pathGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .pathGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pathCardOverImage {
+  position: relative;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.pathCardOverImage:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.1);
+  border-color: rgba(203, 213, 225, 0.9);
+}
+
+.pathCardBackdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.pathCardOverImage:hover .pathCardBackdrop {
+  transform: scale(1.04);
+}
+
+/* Organic curved bottom overlay on image */
+.pathCardOverlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 3.5rem 1.25rem 1.25rem 1.25rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 25%,
+    rgba(255, 255, 255, 0.95) 60%,
+    #ffffff 100%
+  );
+  display: flex;
+  flex-direction: column;
+}
+
+.pathIconBadge {
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+}
+
+.pathKickerText {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #090e17;
+  margin-bottom: 0.25rem;
+}
+
+.pathLinkText {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #475569;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  transition: color 0.15s ease;
+}
+
+.pathCardOverImage:hover .pathLinkText {
+  color: #090e17;
+}
+
+/* ==========================================================================
+   3. FEATURED ARTICLE BANNER (INTEGRATED PANORAMIC)
+   ========================================================================== */
+
+.featuredSection {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4.5rem 1.5rem;
+}
+
+.featuredCardPanoramic {
+  position: relative;
+  border-radius: 2.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  background-color: #ffffff;
+  box-shadow: 0 10px 36px -6px rgba(15, 23, 42, 0.05);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.featuredImageBackdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  z-index: 1;
+}
+
+.featuredCardGradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 44%,
+    rgba(255, 255, 255, 0.92) 56%,
+    rgba(255, 255, 255, 0.4) 74%,
+    rgba(255, 255, 255, 0) 90%
+  );
+}
+
+@media (max-width: 1023px) {
+  .featuredCardGradient {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.95) 55%,
+      rgba(255, 255, 255, 0.6) 80%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  }
+}
+
+.featuredContentGrid {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: 3.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(13rem, 0.6fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .featuredContentGrid {
+    grid-template-columns: 1fr;
+    padding: 2.25rem 1.5rem;
+    gap: 2rem;
+  }
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.badgeFeatured {
+  background-color: #090e17;
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6875rem;
+  border-radius: 9999px;
+}
+
+.badgeOutline {
+  background-color: rgba(248, 250, 252, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  color: #334155;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6875rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  backdrop-filter: blur(4px);
+}
+
+.featuredTitle {
+  font-family: var(--font-cormorant), "Cormorant Garamond", "Playfair Display", Georgia, serif !important;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.12;
+  font-weight: 500;
+  color: #090e17;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+  text-transform: none !important;
+}
+
+.featuredExcerpt {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #475569;
+  max-width: 34rem;
+  margin-bottom: 1.5rem;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.tagPill {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 0.1875rem 0.5625rem;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.featuredActionsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (max-width: 1023px) {
+  .featuredActionsStack {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* ==========================================================================
+   4. ARTICLE INDEX (CLEAN 5-COLUMN EDITORIAL GRID)
+   ========================================================================== */
+
+.indexSection {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem 1.5rem;
+}
+
+.indexHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .indexHeader {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.indexTitle {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-weight: 500;
+  color: #090e17;
+  letter-spacing: -0.025em;
+  text-transform: none !important;
+}
+
+.indexControls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.countText {
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.sortSelect {
+  min-height: 38px;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  padding: 0.375rem 1.75rem 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #334155;
+  outline: none;
+  cursor: pointer;
+}
+
+.filterAndSearchRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filterTabsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filterPill {
+  min-height: 36px;
+  padding: 0.375rem 1.125rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  background-color: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filterPill:hover {
+  background-color: #f8fafc;
+  color: #090e17;
+  border-color: #94a3b8;
+}
+
+.filterPillActive {
+  background-color: #090e17 !important;
+  color: #ffffff !important;
+  border-color: #090e17 !important;
+}
+
+.searchPillWrapper {
+  position: relative;
+  min-width: 16rem;
+  max-width: 22rem;
+}
+
+@media (max-width: 639px) {
+  .searchPillWrapper {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+
+.searchPillInput {
+  width: 100%;
+  min-height: 36px;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  padding: 0.375rem 2rem 0.375rem 2.25rem;
+  font-size: 0.75rem;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.searchPillInput:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.12);
+}
+
+.searchPillInput::placeholder {
+  color: #94a3b8;
+}
+
+.searchPillIcon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.searchPillClear {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchPillClear:hover {
+  color: #090e17;
+}
+
+.emptyStateCard {
+  margin-top: 2rem;
+  border-radius: 1.5rem;
+  border: 1px dashed #cbd5e1;
+  background-color: rgba(248, 250, 252, 0.6);
+  padding: 2.5rem;
+  text-align: center;
+}
+
+/* 5 COLUMNS ON DESKTOP */
+.articleGrid5Col {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.125rem;
+}
+
+@media (max-width: 1439px) {
+  .articleGrid5Col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 959px) {
+  .articleGrid5Col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .articleGrid5Col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.articleCardClean {
+  background-color: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.articleCardClean:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 26px -4px rgba(15, 23, 42, 0.08);
+}
+
+.articleImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.articleImage {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.articleCardClean:hover .articleImage {
+  transform: scale(1.03);
+}
+
+.articleCardBody {
+  padding: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.articleBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.625rem;
+}
+
+.badgeCategoryHBOT {
+  background-color: rgba(6, 182, 212, 0.1);
+  color: #0891b2;
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.4375rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.badgeCategoryPEMF {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: #7e22ce;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.4375rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.badgeCategoryRLT {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.4375rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.badgeCategoryHydrogen {
+  background-color: rgba(14, 165, 233, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.4375rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.badgeCategoryProtocols {
+  background-color: rgba(71, 85, 105, 0.1);
+  color: #334155;
+  border: 1px solid rgba(71, 85, 105, 0.25);
+  font-size: 0.625rem;
+  font-weight: 700;
+  padding: 0.125rem 0.4375rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+}
+
+.articleCardTitle {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 1.1875rem !important;
+  line-height: 1.22 !important;
+  font-weight: 500 !important;
+  color: #090e17 !important;
+  letter-spacing: -0.015em !important;
+  text-transform: none !important;
+  margin-bottom: 0.5rem;
+}
+
+.articleCardExcerpt {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #64748b;
+  margin-bottom: 0.875rem;
+  word-break: break-word;
+}
+
+.articleMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: auto;
+  padding-top: 0.625rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.articleActionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+}
+
+.articleReadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #090e17;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.articleReadLink:hover {
+  color: #0284c7;
+}
+
+.articleSupportLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.articleSupportLink:hover {
+  color: #090e17;
+}
+
+/* ==========================================================================
+   5. EDITORIAL & REVIEW CONTEXT CONTAINER
+   ========================================================================== */
+
+.editorialSection {
+  max-width: 82rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem 1.5rem;
+}
+
+.editorialContainer {
+  background-color: #f8fafc;
+  border-radius: 1.75rem;
+  border: 1px solid #e2e8f0;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr) minmax(0, 1.2fr);
+  gap: 2.5rem;
+}
+
+@media (max-width: 1023px) {
+  .editorialContainer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.75rem;
+  }
+}
+
+.editorialColLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.editorialTitle {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 1.625rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #090e17;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.75rem;
+}
+
+.editorialDescription {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.editorialColCenter {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-left: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  padding: 0 2rem;
+}
+
+@media (max-width: 1023px) {
+  .editorialColCenter {
+    border-left: none;
+    border-right: none;
+    padding: 0;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem 0;
+  }
+}
+
+.reviewItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.reviewItemIcon {
+  color: #64748b;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.reviewItemLabel {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #64748b;
+}
+
+.reviewItemValue {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #090e17;
+  margin-top: 0.125rem;
+}
+
+.reviewItemDetail {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #64748b;
+  margin-top: 0.125rem;
+}
+
+.editorialColRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.supportTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #090e17;
+  margin-bottom: 0.5rem;
+}
+
+.supportHours {
+  font-size: 0.8125rem;
+  color: #475569;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.375rem;
+  margin-bottom: 0.375rem;
+}
+
+.supportDetail {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.supportLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.supportLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #475569;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.supportLink:hover {
+  color: #090e17;
+}

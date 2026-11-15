@@ -1,0 +1,256 @@
+/* ==========================================================================
+   HYLONO ABOUT ROUTE — MUSEUM-GRADE LUXURY EDITORIAL SPECIFICATION
+   Visual Parity Architecture: media_1790697805362.jpg
+   Design Tokens: Cormorant Garamond, Daylight Travertine, Aged Bronze & Sand
+   ========================================================================== */
+
+.aboutPage {
+  background-color: #FAF7F2;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(250, 247, 242, 0) 70%),
+    radial-gradient(circle at 100% 30%, rgba(234, 219, 206, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 0% 70%, rgba(234, 219, 206, 0.2) 0%, transparent 60%);
+  color: #1C1917;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force Cormorant Garamond serif headings with authentic editorial metrics */
+.aboutPage :global(h1.font-editorial),
+.aboutPage :global(h2.font-editorial),
+.aboutPage :global(h3.font-editorial),
+.aboutPage :global(h4.font-editorial),
+.aboutPage :global(.font-editorial) {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif !important;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+/* Roman Architectural Arch for Hero Sanctuary Viewport */
+.heroArchContainer {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: 9999px 9999px 1.5rem 1.5rem;
+  overflow: hidden;
+  background: #F4EFE6;
+  border: 1px solid rgba(217, 200, 182, 0.7);
+  box-shadow: 
+    0 25px 60px -15px rgba(28, 25, 23, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .heroArchContainer {
+    height: 560px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroArchContainer {
+    height: 600px;
+  }
+}
+
+.heroArchContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 35px 80px -20px rgba(158, 115, 76, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Luxury Primary Bronze Pill Button with Luster & Depth */
+.luxuryPrimaryCta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #9C6F42 0%, #875B30 100%);
+  border: 1px solid rgba(184, 140, 95, 0.6);
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  box-shadow: 
+    0 4px 14px rgba(135, 91, 48, 0.3),
+    0 1px 2px rgba(255, 255, 255, 0.25) inset;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.luxuryPrimaryCta:hover {
+  background: linear-gradient(135deg, #A87948 0%, #8F6234 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 
+    0 8px 24px rgba(135, 91, 48, 0.4),
+    0 1px 2px rgba(255, 255, 255, 0.4) inset;
+  color: #FFFFFF;
+}
+
+.luxuryPrimaryCta:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(135, 91, 48, 0.3),
+    0 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
+
+/* Secondary Editorial Outline Pill Button */
+.luxurySecondaryCta {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #D9CDBF;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #292524;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.luxurySecondaryCta:hover {
+  background: #FFFFFF;
+  border-color: #9C6F42;
+  color: #1C1917;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px rgba(158, 115, 76, 0.15);
+}
+
+/* Continuous Public Facts Dock */
+.factsDock {
+  border-radius: 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid #E6DED3;
+  box-shadow: 
+    0 8px 30px -5px rgba(28, 25, 23, 0.04),
+    0 1px 3px rgba(28, 25, 23, 0.02);
+}
+
+/* Atelier Elevated Bento Panels */
+.atelierPanel {
+  background: #FFFFFF;
+  border-radius: 2rem;
+  border: 1px solid #E6DED3;
+  box-shadow: 
+    0 10px 35px -8px rgba(28, 25, 23, 0.04),
+    0 1px 2px rgba(28, 25, 23, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atelierPanel:hover {
+  border-color: #D6C4B0;
+  box-shadow: 
+    0 18px 50px -10px rgba(158, 115, 76, 0.12),
+    0 2px 4px rgba(28, 25, 23, 0.02);
+}
+
+/* Luxury Interactive Card with Elevation */
+.luxuryCard {
+  background: #FFFFFF;
+  border-radius: 1.75rem;
+  border: 1px solid #E6DED3;
+  box-shadow: 
+    0 6px 20px -4px rgba(28, 25, 23, 0.03),
+    0 1px 2px rgba(28, 25, 23, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxuryCard:hover {
+  border-color: #9C6F42;
+  transform: translateY(-3px);
+  box-shadow: 
+    0 16px 40px -8px rgba(158, 115, 76, 0.14),
+    0 2px 4px rgba(28, 25, 23, 0.03);
+}
+
+/* Bronze Emblem Avatar Badges */
+.bronzeEmblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #F8F3EC 0%, #EADBCE 100%);
+  border: 1px solid #D9C8B5;
+  color: #94673A;
+  box-shadow: 
+    0 2px 6px rgba(148, 103, 58, 0.08),
+    0 1px 1px rgba(255, 255, 255, 0.8) inset;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Circular Exit Buttons with Hover Luster */
+.exitCircleButton {
+  display: flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  border: 1px solid #E2D7C8;
+  color: #94673A;
+  box-shadow: 0 2px 8px rgba(28, 25, 23, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.exitCircleButton:hover {
+  background: #9C6F42;
+  border-color: #9C6F42;
+  color: #FFFFFF;
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(158, 115, 76, 0.35);
+}
+
+/* Oversized Editorial Numerals */
+.editorialNumeral {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Didot, serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  font-weight: 300;
+  color: #9C6F42;
+  letter-spacing: -0.03em;
+}
+
+@media (min-width: 640px) {
+  .editorialNumeral {
+    font-size: 4.25rem;
+  }
+}
+
+/* Pre-Footer Grand Sandstone Dock */
+.preFooterDock {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2.5rem;
+  background: linear-gradient(135deg, #F7F2EA 0%, #EFE7DB 50%, #F5ECE0 100%);
+  border: 1px solid #DFD2C2;
+  box-shadow: 
+    0 20px 50px -10px rgba(28, 25, 23, 0.06),
+    0 1px 2px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Reduced Motion Safety */
+@media (prefers-reduced-motion: reduce) {
+  .heroArchContainer,
+  .luxuryPrimaryCta,
+  .luxurySecondaryCta,
+  .atelierPanel,
+  .luxuryCard,
+  .exitCircleButton {
+    transition: none !important;
+    transform: none !important;
+  }
+}

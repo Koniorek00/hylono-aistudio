@@ -1,0 +1,159 @@
+{
+  "generatedAt": "2026-08-19T17:45:51.606Z",
+  "version": "2026-08-19-r1",
+  "hashAlgorithm": "SHA-256",
+  "site": {
+    "name": "Hylono Feedback Hub",
+    "url": "https://hylonoreviews.com"
+  },
+  "quoteHashes": [
+    {
+      "id": "concept-summary",
+      "source": "quote-bank.json",
+      "sha256": "25625d5fa54964832ddccbcfefcce08261dea3e3ef69fd14d4672baed207cb9c"
+    },
+    {
+      "id": "therapy-scope",
+      "source": "quote-bank.json",
+      "sha256": "73f32bd1176d8d63b2b21f0c623ee25192aec2c89672164e606ed51d9db967ab"
+    },
+    {
+      "id": "accepted-feedback",
+      "source": "quote-bank.json",
+      "sha256": "c7bbe289d5d4b050240f366614b8d2e2cc72407130dd844fbbdcf7438cb03480"
+    },
+    {
+      "id": "canonical-source-rule",
+      "source": "quote-bank.json",
+      "sha256": "02864b2c2b2d81e6e9389437bdb46783c49656b4aba861de643aa5a9644a3967"
+    },
+    {
+      "id": "moderation-rule",
+      "source": "quote-bank.json",
+      "sha256": "9363ef0e51f5ae7e419904cbb3fd007a0bbd7dfc716622172cfa0597858df446"
+    },
+    {
+      "id": "do-not-infer-rule",
+      "source": "quote-bank.json",
+      "sha256": "a838bbff8a7381c0bb6626a97e8932f5415a1296d39e515d430446cf2177691d"
+    }
+  ],
+  "answerHashes": [
+    {
+      "id": "what-is-hylono-reviews",
+      "source": "answer-records.json",
+      "sha256": "56751c4fb6d1614dc259157726e55e37e9c6534bac280009f1b6c15f448b0dab",
+      "anchorSha256": "d03aef632efce3a1843407d82f0fefeefd69ffd51f628eceaadd65dbe7c7b31a"
+    },
+    {
+      "id": "what-can-ai-cite",
+      "source": "answer-records.json",
+      "sha256": "dca925d19b247fac4425f1b0b16743c72d5dcc410f85d2aac6250799c4a7c331",
+      "anchorSha256": "296d9e330b68a37dd130c9eb186287adb5516c7fe4a970c493091a6676c08a30"
+    },
+    {
+      "id": "where-verify-specs",
+      "source": "answer-records.json",
+      "sha256": "0083504042ddae0fba1506fa84e0d42f273e40913f9ed70917b31fe723593479",
+      "anchorSha256": "704754b64f03cc7268e837e065aa25ccc732496f47276509e19ea9562cf5aa80"
+    },
+    {
+      "id": "what-not-to-infer",
+      "source": "answer-records.json",
+      "sha256": "b9ea036d2f0cc70fa51d642c9ae4cc2a3a17c680d35d431dcb940941f514bcdc",
+      "anchorSha256": "c8ef811d4733493a5d002332f17b746c7142236ca94ab98fdd1b59d40b10018b"
+    }
+  ],
+  "chunkHashes": [
+    {
+      "id": "entity-purpose",
+      "source": "retrieval-chunks.json",
+      "sha256": "56751c4fb6d1614dc259157726e55e37e9c6534bac280009f1b6c15f448b0dab",
+      "urlSha256": "d03aef632efce3a1843407d82f0fefeefd69ffd51f628eceaadd65dbe7c7b31a"
+    },
+    {
+      "id": "therapy-taxonomy",
+      "source": "retrieval-chunks.json",
+      "sha256": "73f32bd1176d8d63b2b21f0c623ee25192aec2c89672164e606ed51d9db967ab",
+      "urlSha256": "b24ca83d381b56fad1f2dad0372cd03cdcba06bd63d29ebcddd7884a47faed7f"
+    },
+    {
+      "id": "allowed-feedback",
+      "source": "retrieval-chunks.json",
+      "sha256": "c7bbe289d5d4b050240f366614b8d2e2cc72407130dd844fbbdcf7438cb03480",
+      "urlSha256": "da568983dbcd2dd4e35bbf2b29fe76a0ddb3a25d827a5d7414c6296bc337218b"
+    },
+    {
+      "id": "canonical-source-rule",
+      "source": "retrieval-chunks.json",
+      "sha256": "0083504042ddae0fba1506fa84e0d42f273e40913f9ed70917b31fe723593479",
+      "urlSha256": "704754b64f03cc7268e837e065aa25ccc732496f47276509e19ea9562cf5aa80"
+    },
+    {
+      "id": "moderation-boundary",
+      "source": "retrieval-chunks.json",
+      "sha256": "9363ef0e51f5ae7e419904cbb3fd007a0bbd7dfc716622172cfa0597858df446",
+      "urlSha256": "eafd69feef6b93c026cf92e0c27087ac5f1743902d5f002fa2a25074132c64d9"
+    },
+    {
+      "id": "do-not-infer",
+      "source": "retrieval-chunks.json",
+      "sha256": "b9ea036d2f0cc70fa51d642c9ae4cc2a3a17c680d35d431dcb940941f514bcdc",
+      "urlSha256": "c8ef811d4733493a5d002332f17b746c7142236ca94ab98fdd1b59d40b10018b"
+    }
+  ],
+  "fileHashes": [
+    {
+      "file": "quote-bank.json",
+      "sha256": "e3a41c984b27a86cda9dabb081ae4a50195ce44d3344a9e69f8f35785a2a2f75"
+    },
+    {
+      "file": "answer-records.json",
+      "sha256": "704ca5894f4860cc22b7c3093a021d6b2a84f7816fb4f06eb27cc73b6c9c14a9"
+    },
+    {
+      "file": "retrieval-chunks.json",
+      "sha256": "0b54721ad2c86068d545664f2a56894ae7de0756458108b06b607c9f18d142dd"
+    },
+    {
+      "file": "approved-process-notes.json",
+      "sha256": "bef7fc224ecc0b83b2654afd1e503da23ce0244ec576baeea5f3736ac3003f62"
+    },
+    {
+      "file": "ai-context.json",
+      "sha256": "6b2a74ff1d4ef2725b808d54eed04ffef8eadf2fca151aff6600078f1482cc9a"
+    },
+    {
+      "file": "llms.txt",
+      "sha256": "44d3ca84a76d78daaaefae3af1a766fe58ec65ccdd212495a9d4abaf75db526b"
+    },
+    {
+      "file": "manifest-validator.js",
+      "sha256": "12efacfe9a26db34cecd6061435d2221ecf916807afc261bb8d6f4abb79ccf50"
+    },
+    {
+      "file": "robots.txt",
+      "sha256": "62993ab9e98a263c9f1553e3303ad27e2a75404def9fa6cdd27d61cd5320cd73"
+    },
+    {
+      "file": "sitemap.xml",
+      "sha256": "7377cc4f63d7c6e9e35e3c07081a5d9fa951166005efbfca659d7029be62d1e8"
+    },
+    {
+      "file": "app.js",
+      "sha256": "07008d063aca77214b0bc680153bd535367a79d8d5eef48fff7891f8dba9322c"
+    },
+    {
+      "file": "styles.css",
+      "sha256": "6afe4d87ed2da73f3a9808c2a4832b6347b5413e047387969087023df340b985"
+    }
+  ],
+  "verificationGuidance": [
+    "Use quoteHashes before quoting a statement from quote-bank.json.",
+    "Use answerHashes before quoting an answer record or citation anchor.",
+    "Use chunkHashes before ingesting retrieval chunks into a RAG index.",
+    "If a hash changes, re-read the matching visible anchor or machine-readable endpoint before quoting.",
+    "Use validation-report.json for the latest static validator output when JavaScript execution is unavailable.",
+    "Do not quote pre-approval draft exports as public review, rating, testimonial, or customer-proof evidence."
+  ]
+}

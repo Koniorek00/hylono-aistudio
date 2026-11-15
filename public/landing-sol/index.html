@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hylono — Open possibilities</title>
+  <link rel="preload" href="./daylight-v2.png" as="image">
+  <link rel="stylesheet" href="./daylight-v2.css">
+  <script src="./daylight-v2.js" defer></script>
+</head>
+<body>
+<div class="opening" id="opening">
+  <div class="world" id="world"><img src="./daylight-v2.png" alt="Oxygen equipment in an open, sunlit architectural setting with greenery and a sea view"></div>
+  <div class="reading-light"></div>
+  <header class="header">
+    <button class="brand" id="home">hylono<span class="brand-point">.</span></button>
+    <nav>
+      <button id="technologyNav">Our technologies</button>
+      <button data-audience-link="0">For your everyday</button>
+      <button data-audience-link="1">For professionals</button>
+    </nav>
+    <button class="header-button" id="guidance">Get guidance</button>
+  </header>
+  <main class="introduction" id="introduction">
+    <p class="eyebrow">Wellness technology. A warmer welcome.</p>
+    <h1><span id="headlineFirst">Wellness.</span><span id="headlineSecond">Made personal.</span></h1>
+    <p class="description" id="description">Oxygen, hydrogen, red light and PEMF.<br>Explore the technology. Understand your options.<br>Find a routine that belongs in your life.</p>
+    <div class="actions">
+      <button class="primary" id="startingPoint">Find what fits you</button>
+      <button class="secondary" id="technologyButton" aria-expanded="false">Explore the technology</button>
+    </div>
+    <p class="reassurance" id="reassurance">From your first question to your everyday routine.</p>
+  </main>
+  <aside class="scene-caption" id="sceneCaption"><span>Considered technology.</span><strong>Open possibilities.</strong><small>Equipment in a concept setting.</small></aside>
+  <div class="technology-tray" id="technologyTray" hidden>
+    <div class="tray-header"><span>A clearer view of the technology.</span><button id="closeTray">Close</button></div>
+    <div class="technology-options">
+      <button class="technology chosen" data-technology="0">Oxygen</button>
+      <button class="technology" data-technology="1">Hydrogen</button>
+      <button class="technology" data-technology="2">Red light</button>
+      <button class="technology" data-technology="3">PEMF</button>
+    </div>
+    <p id="technologyDescription">Hyperbaric oxygen equipment, with guidance on choosing a chamber and making space for it.</p>
+  </div>
+  <footer class="starting-dock" id="startingDock">
+    <div class="dock-intro"><span class="dock-kicker">A place to begin</span><h2 id="dockTitle">What brings you here?</h2></div>
+    <div class="audiences" role="group" aria-label="Choose your starting point">
+      <button class="audience active" data-audience="0" aria-pressed="true"><span>Everyday wellbeing</span><small>A routine at your own pace</small></button>
+      <button class="audience" data-audience="1" aria-pressed="false"><span>Medical &amp; wellness</span><small>For your professional space</small></button>
+      <button class="audience" data-audience="2" aria-pressed="false"><span>Sport &amp; recovery</span><small>Part of your training routine</small></button>
+      <button class="audience" data-audience="3" aria-pressed="false"><span>Biohacking</span><small>Let curiosity lead the way</small></button>
+      <div class="audience-indicator" id="audienceIndicator"></div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,844 @@
+/*
+ * How Hylono Works — Route-Scoped Art Direction Module
+ * High-craft editorial layout translating how-hylono-works.png reference
+ * strictly isolated to /how-hylono-works
+ */
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+  background-color: #070a0f;
+  color: #ffffff;
+  font-family: var(--font-body, 'Outfit', sans-serif);
+}
+
+/* =========================================================================
+   1. HERO SECTION: Architectural Alpine Villa with Panoramic Lake Negative Space
+   ========================================================================= */
+.heroSection {
+  position: relative;
+  min-height: 820px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #0d131a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/advisors/terrace-twilight.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* Directional scrim: subtle luminous morning mist over the left 55% for crisp dark text,
+   leaving the right side showing the mountains, lake, and villa terrace */
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 252, 0.94) 0%,
+    rgba(250, 250, 252, 0.90) 38%,
+    rgba(250, 250, 252, 0.55) 55%,
+    rgba(250, 250, 252, 0.15) 75%,
+    rgba(10, 16, 26, 0.65) 100%
+  );
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .heroScrim {
+    background: linear-gradient(
+      180deg,
+      rgba(250, 250, 252, 0.96) 0%,
+      rgba(250, 250, 252, 0.92) 55%,
+      rgba(10, 16, 26, 0.88) 100%
+    );
+  }
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 5rem 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.8fr);
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    padding: 4rem 1.25rem 4rem 1.25rem;
+    gap: 2.5rem;
+  }
+}
+
+.heroContent {
+  max-width: 42rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: #0e7490;
+  margin-bottom: 1.25rem;
+}
+
+.eyebrowLight {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: #22d3ee;
+  margin-bottom: 1.25rem;
+}
+
+.heroHeadline {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #090e17;
+  text-wrap: balance;
+  margin-bottom: 1.5rem;
+}
+
+.heroDescription {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.7;
+  color: #334155;
+  max-width: 36rem;
+  margin-bottom: 2.5rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.primaryCta {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0 1.75rem;
+  background-color: #090e17;
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, box-shadow 200ms ease;
+  text-decoration: none;
+  box-shadow: 0 8px 20px -4px rgba(9, 14, 23, 0.25);
+}
+
+.primaryCta:hover {
+  background-color: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -4px rgba(9, 14, 23, 0.35);
+}
+
+.secondaryCta {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0 1.75rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #090e17;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: 9999px;
+  border: 1px solid rgba(9, 14, 23, 0.15);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease;
+  text-decoration: none;
+}
+
+.secondaryCta:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+}
+
+/* Floating Public Process Facts Card */
+.factsCard {
+  background: rgba(13, 20, 32, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.5rem;
+  padding: 2.25rem;
+  color: #ffffff;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.45);
+}
+
+.factsBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  background: rgba(34, 211, 238, 0.12);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  margin-bottom: 1.25rem;
+}
+
+.factsEyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: #22d3ee;
+  margin-bottom: 1.5rem;
+}
+
+.factsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.factItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+}
+
+.factIcon {
+  color: #67e8f9;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.factLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-bottom: 0.25rem;
+}
+
+.factValue {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* =========================================================================
+   2. PROCESS MAP SECTION: Crisp Light Chalk Surface with 4-Column Track
+   ========================================================================= */
+.processMapSection {
+  background-color: #f8fafc;
+  color: #090e17;
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+@media (max-width: 1024px) {
+  .processMapSection {
+    padding: 4rem 1.25rem;
+  }
+}
+
+.sectionInner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.processMapGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.1fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .processMapGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.sectionHeadlineDark {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #090e17;
+  margin-bottom: 1.25rem;
+}
+
+.sectionDescriptionDark {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+.stagesTrack {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .stagesTrack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .stagesTrack {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.stageCard {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+}
+
+.stageCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.08);
+}
+
+.stageThumbnailWrap {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.5rem;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.stageThumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stageNumber {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.875rem;
+  font-weight: 500;
+  color: #0e7490;
+  margin-bottom: 0.5rem;
+}
+
+.stageNumber::before {
+  content: attr(data-step);
+}
+
+.stageTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #090e17;
+  margin-bottom: 0.75rem;
+}
+
+.stageDescription {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #64748b;
+}
+
+/* =========================================================================
+   3. GOVERNANCE & OWNERSHIP SECTION: Nocturnal Carbon with Glowing Cyan Wave
+   ========================================================================= */
+.governanceSection {
+  position: relative;
+  background-color: #070c14;
+  color: #ffffff;
+  padding: 6.5rem 1.5rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1024px) {
+  .governanceSection {
+    padding: 4rem 1.25rem;
+  }
+}
+
+.governanceWaveBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/advisors/wave-atmosphere.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.governanceGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.1fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .governanceGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.sectionHeadlineLight {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.sectionDescriptionLight {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #94a3b8;
+}
+
+.governanceCols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .governanceCols {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.governanceCard {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.governanceIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background: rgba(34, 211, 238, 0.12);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  margin-bottom: 1.25rem;
+}
+
+.governanceRole {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #67e8f9;
+  margin-bottom: 0.5rem;
+}
+
+.governanceTeam {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.governanceDetail {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.governanceMetaBar {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.governanceNote {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  max-width: 48rem;
+}
+
+.governanceDate {
+  font-size: 0.8125rem;
+  color: #67e8f9;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pageOwnershipCustom {
+  background: rgba(13, 20, 32, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 1.5rem !important;
+  padding: 2.5rem !important;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* =========================================================================
+   4. BOUNDARIES & LIMITS SECTION: Crisp Light Ice Surface with 4 Columns
+   ========================================================================= */
+.boundariesSection {
+  background-color: #f1f5f9;
+  color: #090e17;
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+@media (max-width: 1024px) {
+  .boundariesSection {
+    padding: 4rem 1.25rem;
+  }
+}
+
+.boundariesGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.1fr);
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .boundariesGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.boundariesCards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .boundariesCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .boundariesCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.boundaryCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.125rem;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+}
+
+.boundaryIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  background: #e0f2fe;
+  color: #0284c7;
+  margin-bottom: 1.25rem;
+}
+
+.boundaryText {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #334155;
+}
+
+/* =========================================================================
+   5. NEXT SOURCE SECTION: Deep Obsidian Carbon with 6 Photo Cards
+   ========================================================================= */
+.nextSourceSection {
+  background-color: #070a0e;
+  color: #ffffff;
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 1024px) {
+  .nextSourceSection {
+    padding: 4rem 1.25rem;
+  }
+}
+
+.nextSourceHeader {
+  max-width: 44rem;
+  margin-bottom: 3.5rem;
+}
+
+.nextCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.75rem;
+}
+
+@media (max-width: 1024px) {
+  .nextCardsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .nextCardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.photoCard {
+  display: flex;
+  flex-direction: column;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.photoCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5), 0 0 20px -4px rgba(34, 211, 238, 0.2);
+}
+
+.cardMedia {
+  width: 100%;
+  height: 12.5rem;
+  position: relative;
+  overflow: hidden;
+  background-color: #0d1522;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.photoCard:hover .cardImage {
+  transform: scale(1.04);
+}
+
+.cardBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cardTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.cardArrow {
+  color: #22d3ee;
+  transition: transform 200ms ease;
+}
+
+.photoCard:hover .cardArrow {
+  transform: translateX(4px);
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* =========================================================================
+   6. PRACTICAL QUICK EXITS: Frosted Cyan Ambient Ribbon
+   ========================================================================= */
+.quickExitsRibbon {
+  margin-top: 3.5rem;
+  padding: 2.25rem;
+  background: rgba(6, 182, 212, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .quickExitsRibbon {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem;
+  }
+}
+
+.quickExitsInfo {
+  max-width: 32rem;
+}
+
+.quickExitsTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.quickExitsDescription {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #cbd5e1;
+}
+
+.quickExitsLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.quickExitPill {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  background: rgba(34, 211, 238, 0.10);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 9999px;
+  color: #cffafe;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms ease, color 200ms ease;
+}
+
+.quickExitPill:hover {
+  background: rgba(34, 211, 238, 0.22);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* =========================================================================
+   7. FOOTER PANORAMA BRIDGE
+   ========================================================================= */
+.footerBridge {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background-color: #070a0f;
+}
+
+.footerBridgeImage {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/advisors/terrace-twilight.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  opacity: 0.4;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+@media (max-width: 640px) {
+  .footerBridge {
+    height: 120px;
+  }
+}
+
+/* =========================================================================
+   8. ACCESSIBILITY & REDUCED MOTION
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .primaryCta,
+  .secondaryCta,
+  .stageCard,
+  .photoCard,
+  .cardImage,
+  .quickExitPill,
+  .cardArrow {
+    transition: none !important;
+    transform: none !important;
+  }
+}

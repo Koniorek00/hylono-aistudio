@@ -1,0 +1,11 @@
+{
+  "name": "Hylono_MAIN",
+  "description": "Hylono - Mind Connects Matter | Futuristic Hyperbaric & Longevity Technology Platform",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "web_app"
+  ]
+}

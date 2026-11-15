@@ -1,0 +1,55 @@
+{
+  "name": "Hylono - Bio-Optimization Technology",
+  "short_name": "Hylono",
+  "description": "Advanced bio-optimization technology platform offering HBOT, PEMF, Red Light Therapy, and Hydrogen solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#06b6d4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ],
+  "lang": "en",
+  "categories": ["health", "medical", "wellness", "technology"],
+  "shortcuts": [
+    {
+      "name": "Store",
+      "short_name": "Store",
+      "description": "Browse wellness technology devices",
+      "url": "/store",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Rental Plans",
+      "short_name": "Rental",
+      "description": "View monthly rental plans",
+      "url": "/rental",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Protocols",
+      "short_name": "Protocols",
+      "description": "Browse guided wellness protocols",
+      "url": "/protocols",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Research",
+      "short_name": "Research",
+      "description": "Explore evidence and research",
+      "url": "/research",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+export { TechAddonCard } from '../TechAddonCard';

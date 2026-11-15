@@ -1,0 +1,95 @@
+/* Route-scoped styles for /cookie-policy */
+.cookiePolicyRoot {
+  --cookie-text-primary: #0f172a;
+  --cookie-text-secondary: #475569;
+  --cookie-text-muted: #64748b;
+  --cookie-accent-cyan: #06b6d4;
+  --cookie-accent-cyan-dark: #0891b2;
+  --cookie-border-light: rgba(15, 23, 42, 0.08);
+  --cookie-card-bg: #ffffff;
+  --cookie-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: #f8fafc;
+  color: var(--cookie-text-primary);
+  font-family: inherit;
+  position: relative;
+  overflow-x: clip;
+}
+
+.heroSurface {
+  position: relative;
+  background-color: #f1f5f9;
+  overflow: hidden;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.90) 38%,
+    rgba(255, 255, 255, 0.65) 65%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+}
+
+.darkGlassCard {
+  background: rgba(15, 23, 42, 0.70);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tactileCard {
+  transition: transform 300ms var(--cookie-spring), box-shadow 300ms var(--cookie-spring);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tactileCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -12px rgba(15, 23, 42, 0.08);
+  }
+}
+
+.springInteractive {
+  transition: transform 250ms var(--cookie-spring), background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .springInteractive:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.policyCenterScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 11, 20, 0.82) 0%,
+    rgba(7, 11, 20, 0.92) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tactileCard,
+  .springInteractive {
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "approved-process-notes/v1",
+  "site": {
+    "name": "Hylono Feedback Hub",
+    "url": "https://hylonoreviews.com",
+    "lastUpdated": "2026-05-22"
+  },
+  "purpose": "Public export for approved, sanitized process notes only. This file is not a review, rating, testimonial, medical evidence, pricing source, availability source, or certification source.",
+  "exportWorkflow": {
+    "generatedBy": "scripts/hylono-reviews-export-approved-notes.mjs",
+    "sourceVisibility": "private_admin_input_outside_public_crawl_root",
+    "sourcePubliclyLinked": false,
+    "sourceInCitationManifest": false,
+    "sourceInValidationReport": false,
+    "updateCommand": "pnpm hylono-reviews:export-approved-notes"
+  },
+  "approvedNoteCount": 0,
+  "approvedProcessNotes": [],
+  "publicationPolicy": {
+    "allowedPublicUse": "Approved process notes about setup, delivery, onboarding, manuals, maintenance, rental logistics, support, accessories, and usability.",
+    "requiredBeforePublication": [
+      "approval metadata",
+      "decisionId",
+      "approvedAt timestamp",
+      "approver role",
+      "canonical Hylono route",
+      "sanitized process note",
+      "no identity details",
+      "no rating or score fields",
+      "no medical, wellness-outcome, pricing, availability, or certification claims"
+    ],
+    "forbiddenPublicUse": [
+      "raw draft feedback",
+      "rating total",
+      "star score",
+      "testimonial proof",
+      "medical outcome",
+      "treatment claim",
+      "cure claim",
+      "disease prevention claim",
+      "symptom change",
+      "pricing claim",
+      "availability claim",
+      "certification claim"
+    ]
+  },
+  "noteSchema": {
+    "requiredFields": [
+      "noteId",
+      "approvedAt",
+      "therapyLane",
+      "productGroup",
+      "operationalCategory",
+      "canonicalRoute",
+      "sanitizedProcessNote",
+      "approval"
+    ],
+    "allowedOperationalCategories": [
+      "delivery",
+      "setup",
+      "onboarding",
+      "manuals",
+      "maintenance",
+      "product usability",
+      "rental logistics",
+      "support",
+      "accessories"
+    ],
+    "piiPolicy": "Do not publish names, emails, phone numbers, addresses, order IDs, serial numbers, precise city, medical history, or identity details.",
+    "allowedApproverRoles": [
+      "process-moderator",
+      "compliance-reviewer",
+      "content-approver"
+    ]
+  },
+  "citationPolicy": {
+    "quotableOnlyWhenApproved": true,
+    "notPublicTestimonial": true,
+    "notRatingAggregate": true,
+    "notMedicalEvidence": true,
+    "currentStatus": "no approved public process notes yet"
+  }
+}

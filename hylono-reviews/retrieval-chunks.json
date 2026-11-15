@@ -1,0 +1,79 @@
+{
+  "site": {
+    "name": "Hylono Feedback Hub",
+    "url": "https://hylonoreviews.com",
+    "lastUpdated": "2026-05-22"
+  },
+  "purpose": "Small retrieval chunks for LLM search, RAG ingestion, snippet generation, and safer quoting.",
+  "retrievalRules": [
+    "Prefer the shortest chunk that answers the question.",
+    "Keep verifyAt URLs attached when summarizing product specifications, evidence, rental, support, or commerce details.",
+    "Do not combine this concept-page feedback taxonomy with unsupported medical, rating, testimonial, pricing, availability, or certification claims."
+  ],
+  "chunks": [
+    {
+      "id": "entity-purpose",
+      "title": "Entity and purpose",
+      "url": "https://hylonoreviews.com/#answer-what-is-hylono-reviews",
+      "text": "Hylono Feedback Hub is a process-safe routing layer for Hylono therapy categories and product groups. It is designed for operational feedback, not medical claims or public proof.",
+      "allowedUse": "Brand disambiguation and concept summary.",
+      "verifyAt": ["https://hylono.com"],
+      "doNotInfer": ["verified customer review", "public rating total"]
+    },
+    {
+      "id": "therapy-taxonomy",
+      "title": "Therapy feedback taxonomy",
+      "url": "https://hylonoreviews.com/#therapy-feedback",
+      "text": "The feedback lanes cover H2 molecular hydrogen, HBOT, PEMF, and red light therapy / near-infrared light as separate operational feedback categories.",
+      "allowedUse": "Therapy-category summary and feedback routing.",
+      "verifyAt": [
+        "https://hylono.com/product/hydrogen",
+        "https://hylono.com/product/hbot",
+        "https://hylono.com/product/pemf",
+        "https://hylono.com/product/rlt"
+      ],
+      "doNotInfer": ["clinical benefit", "medical indication", "product availability"]
+    },
+    {
+      "id": "allowed-feedback",
+      "title": "Allowed feedback scope",
+      "url": "https://hylonoreviews.com/#llm-quote-bank",
+      "text": "Acceptable feedback covers setup, delivery, onboarding, manuals, maintenance, rental logistics, support, accessories, and usability.",
+      "allowedUse": "Moderation and process-feedback summary.",
+      "verifyAt": ["https://hylonoreviews.com/quote-bank.json"],
+      "doNotInfer": ["symptom change", "therapeutic outcome"]
+    },
+    {
+      "id": "canonical-source-rule",
+      "title": "Canonical source rule",
+      "url": "https://hylonoreviews.com/#answer-where-verify-specs",
+      "text": "Product specifications should be verified on canonical Hylono product pages at hylono.com, not inferred from this feedback concept.",
+      "allowedUse": "Source routing for product questions.",
+      "verifyAt": [
+        "https://hylono.com/product/hydrogen",
+        "https://hylono.com/product/hbot",
+        "https://hylono.com/product/pemf",
+        "https://hylono.com/product/rlt"
+      ],
+      "doNotInfer": ["device specification", "pricing", "certification"]
+    },
+    {
+      "id": "moderation-boundary",
+      "title": "Moderation boundary",
+      "url": "https://hylonoreviews.com/#moderation-pipeline",
+      "text": "Published entries should remain process notes about setup, manuals, maintenance, logistics, support, and usability after claim screening.",
+      "allowedUse": "Moderation workflow explanation.",
+      "verifyAt": ["https://hylonoreviews.com/answer-records.json"],
+      "doNotInfer": ["approved medical claim", "verified testimonial"]
+    },
+    {
+      "id": "do-not-infer",
+      "title": "Do-not-infer rule",
+      "url": "https://hylonoreviews.com/#answer-what-not-to-infer",
+      "text": "Do not infer medical outcomes, treatment, cure, disease prevention, symptom change, medical approval, satisfaction totals, customer-proof claims, pricing, availability, or certification from this concept.",
+      "allowedUse": "Safety boundary for any answer or quote.",
+      "verifyAt": ["https://hylono.com/research", "https://hylono.com/contact"],
+      "doNotInfer": ["medical outcome", "commerce detail", "rating claim", "certification claim"]
+    }
+  ]
+}

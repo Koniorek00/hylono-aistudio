@@ -1,0 +1,192 @@
+/* ==========================================================================
+   NEXUS OPERATOR WORKSPACE — CLINICAL DAYLIGHT DESIGN SYSTEM
+   Matches the luxury clinical operator hub reference design (media_1789413949917.jpg):
+   - Dark luxury sidebar with subtle mountain texture (#0B111E)
+   - Luminous light clinical main canvas (#F8FAFC)
+   - High-contrast geometric sans display typography
+   - Elevated pure white cards (#FFFFFF) with crisp borders (#E2E8F0)
+   ========================================================================== */
+
+/* 1. TYPOGRAPHY: Clean geometric sans typography for clinical dashboard legibility */
+[data-nexus-shell] h1,
+[data-nexus-shell] h2,
+.nexus-shell h1,
+.nexus-shell h2,
+[data-nexus-shell] .hero-title,
+.nexus-shell .hero-title {
+  font-family: var(--font-syncopate, 'Syncopate'), var(--font-body, system-ui, sans-serif) !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+}
+
+[data-nexus-shell] h3,
+[data-nexus-shell] h4,
+[data-nexus-shell] h5,
+[data-nexus-shell] h6,
+[data-nexus-shell] .heading,
+[data-nexus-shell] .title,
+[data-nexus-shell] .section-title,
+[data-nexus-shell] .page-title,
+.nexus-shell h3,
+.nexus-shell h4,
+.nexus-shell h5,
+.nexus-shell h6,
+.nexus-shell .heading,
+.nexus-shell .title,
+.nexus-shell .section-title,
+.nexus-shell .page-title {
+  font-family: var(--font-body, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif) !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+
+/* Eyebrow and uppercase labels */
+[data-nexus-shell] .nexus-eyebrow,
+.nexus-shell .nexus-eyebrow {
+  letter-spacing: 0.18em !important;
+  font-family: var(--font-syncopate, 'Syncopate'), system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+}
+
+/* 2. BASE SHELL & WORKSPACE ILLUMINATION */
+[data-nexus-shell],
+.nexus-shell {
+  position: relative;
+  background-color: #f8fafc !important;
+  min-height: 100vh;
+}
+
+/* Main content wrapper */
+.nexus-main-canvas {
+  background-color: #f8fafc !important;
+  color: #0f172a;
+}
+
+/* 3. ELEVATED CLINICAL CARDS */
+.nexus-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nexus-card:hover {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 4. CLINICAL STATUS BADGES */
+.nexus-badge-online {
+  background-color: #ecfdf5 !important;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.nexus-badge-academy {
+  background-color: #f5f3ff !important;
+  color: #6d28d9 !important;
+  border: 1px solid #ddd6fe !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+}
+
+.nexus-badge-service {
+  background-color: #ecfdf5 !important;
+  color: #059669 !important;
+  border: 1px solid #a7f3d0 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+}
+
+.nexus-badge-team {
+  background-color: #eef2ff !important;
+  color: #4338ca !important;
+  border: 1px solid #c7d2fe !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+}
+
+.nexus-badge-supplies {
+  background-color: #fff7ed !important;
+  color: #c2410c !important;
+  border: 1px solid #fed7aa !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+}
+
+/* 5. DARK SIDEBAR CHROME */
+.nexus-sidebar {
+  background-color: #0b111e !important;
+  color: #94a3b8 !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.nexus-sidebar-item-active {
+  background-color: rgba(255, 255, 255, 0.10) !important;
+  color: #ffffff !important;
+}
+
+.nexus-sidebar-item {
+  color: #94a3b8 !important;
+  transition: all 0.15s ease !important;
+}
+
+.nexus-sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+}
+
+/* 6. TOP HEADER CHROME */
+.nexus-topbar {
+  background-color: rgba(255, 255, 255, 0.90) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* 7. ACCESSIBILITY & FOCUS VISIBILITY */
+[data-nexus-shell] a:focus-visible,
+[data-nexus-shell] button:focus-visible,
+.nexus-shell a:focus-visible,
+.nexus-shell button:focus-visible {
+  outline: 2px solid #0284c7 !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-nexus-shell] *,
+  .nexus-shell * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 8. TEXT UTILITIES */
+[data-nexus-shell] .nexus-nowrap,
+.nexus-shell .nexus-nowrap {
+  white-space: nowrap !important;
+}
+
+

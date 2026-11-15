@@ -1,0 +1,445 @@
+/* ==========================================================================
+   Service and Support Route Scoped Stylesheet
+   Art-directed luxury warm-dark editorial aesthetic for /service-and-support
+   Preserves 100% route scoping under .serviceSupportRoot
+   ========================================================================== */
+
+.serviceSupportRoot {
+  --ss-bg: #FBF9F5;
+  --ss-surface: #FFFFFF;
+  --ss-surface-muted: #F5F1E9;
+  --ss-border: #E8E2D8;
+  --ss-border-subtle: rgba(232, 226, 216, 0.75);
+  --ss-text-heading: #0F172A;
+  --ss-text-body: #475569;
+  --ss-text-muted: #64748B;
+  --ss-dark-bg: #080B0F;
+  --ss-dark-card: #0D131A;
+  --ss-dark-surface: #12171F;
+  --ss-dark-border: rgba(255, 255, 255, 0.10);
+  --ss-dark-border-hover: rgba(255, 255, 255, 0.22);
+  --ss-dark-text-heading: #FFFFFF;
+  --ss-dark-text-body: #94A3B8;
+  --ss-dark-text-muted: #64748B;
+  --ss-blush-bg: #FCF0ED;
+  --ss-blush-border: #F3DCD5;
+  --ss-blush-item-bg: #FFFFFF;
+  --ss-blush-badge-bg: #FDE8E2;
+  --ss-blush-badge-text: #C04A38;
+  --ss-amber: #F59E0B;
+  --ss-cyan: #06B6D4;
+  --ss-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+  background-color: var(--ss-bg);
+  color: var(--ss-text-heading);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Typography Moments */
+.editorialHeadline {
+  font-family: var(--font-editorial, 'Cormorant Garamond', Georgia, serif);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+  color: #FFFFFF;
+}
+
+.editorialSectionTitle {
+  font-family: var(--font-editorial, 'Cormorant Garamond', Georgia, serif);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--ss-text-heading);
+}
+
+.kicker {
+  font-family: var(--font-heading, 'Syncopate', sans-serif);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Hero Section with Directional Scrim */
+.heroSection {
+  position: relative;
+  min-height: 640px;
+  background-color: var(--ss-dark-bg);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.heroImageContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% 25%;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: 
+    linear-gradient(90deg, #080B0F 0%, rgba(8, 11, 15, 0.96) 38%, rgba(8, 11, 15, 0.76) 62%, rgba(8, 11, 15, 0.42) 82%, rgba(8, 11, 15, 0.2) 100%),
+    linear-gradient(180deg, transparent 65%, rgba(8, 11, 15, 0.95) 100%);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero CTAs */
+.heroPrimaryCta {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #080B0F;
+  transition: transform 200ms var(--ss-ease-spring), background-color 200ms ease;
+}
+
+.heroPrimaryCta:hover {
+  transform: translateY(-1px);
+  background-color: #F1F5F9;
+}
+
+.heroSecondaryCta {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #F8FAFC;
+  transition: transform 200ms var(--ss-ease-spring), border-color 200ms ease, background-color 200ms ease;
+}
+
+.heroSecondaryCta:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.45);
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Floating Facts Bar */
+.factsBar {
+  border-radius: 1.5rem;
+  background: rgba(13, 19, 26, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+.factsTitle {
+  font-family: var(--font-editorial, 'Cormorant Garamond', Georgia, serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.factsItem {
+  border-radius: 0.875rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.factsItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Stage Cards */
+.stageCard {
+  background: #FFFFFF;
+  border: 1px solid var(--ss-border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 250ms var(--ss-ease-spring), box-shadow 250ms var(--ss-ease-spring), border-color 200ms ease;
+}
+
+.stageCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.08);
+  border-color: #D6CEC2;
+}
+
+.stagePhotoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #F1EFEA;
+}
+
+.stagePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms var(--ss-ease-spring);
+}
+
+.stageCard:hover .stagePhoto {
+  transform: scale(1.035);
+}
+
+.stageNumberBadge {
+  position: absolute;
+  top: 0.875rem;
+  left: 0.875rem;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 0.25rem 0.625rem;
+  font-family: var(--font-heading, 'Syncopate', sans-serif);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #0F172A;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.stageNumberBadge::before {
+  content: attr(data-stage);
+}
+
+.stageIconFloating {
+  position: absolute;
+  bottom: 0.875rem;
+  left: 0.875rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0891B2;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Maintainers & Boundaries Split */
+.maintainersCard {
+  background: var(--ss-dark-card);
+  border: 1px solid var(--ss-dark-border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.maintainersOfficeImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 35%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 35%);
+}
+
+.blushBoundariesCard {
+  background: var(--ss-blush-bg);
+  border: 1px solid var(--ss-blush-border);
+  border-radius: 1.5rem;
+}
+
+.blushItem {
+  background: transparent;
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.25rem;
+  display: flex;
+  gap: 1.125rem;
+  align-items: flex-start;
+  transition: transform 200ms var(--ss-ease-spring);
+}
+
+.blushItem:hover {
+  transform: translateX(3px);
+}
+
+.blushIconBadge {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  color: #C04A38;
+  border: 1px solid rgba(192, 74, 56, 0.2);
+  box-shadow: 0 2px 8px rgba(192, 74, 56, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Next Source Route Cards */
+.nextSourceCard {
+  background: #FFFFFF;
+  border: 1px solid var(--ss-border);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 250ms var(--ss-ease-spring), box-shadow 250ms var(--ss-ease-spring), border-color 200ms ease;
+}
+
+.nextSourceCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.08);
+  border-color: #D6CEC2;
+}
+
+.nextSourceIconBadge {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.875rem;
+  background: var(--ss-surface-muted);
+  color: #0891B2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.nextSourceCard:hover .nextSourceIconBadge {
+  background: #E0F2FE;
+  color: #0284C7;
+}
+
+.routePathRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.routePathRow::before {
+  content: attr(data-path);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8125rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.euBadgeText::after {
+  content: 'EU support coverage';
+  display: block;
+  font-size: 0.6875rem;
+  color: #94A3B8;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.kineticArrow {
+  transition: transform 200ms var(--ss-ease-spring);
+}
+
+.nextSourceCard:hover .kineticArrow {
+  transform: translateX(4px);
+  color: #0F172A;
+}
+
+.policyContainer {
+  border-radius: 1.5rem;
+  background-color: #090D14;
+}
+
+/* Policy Exits Section */
+.policySection {
+  position: relative;
+  background: var(--ss-dark-bg);
+  border-top: 1px solid var(--ss-dark-border);
+  overflow: hidden;
+}
+
+.policyBackdropImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.14;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+}
+
+.policyCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 1.125rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 200ms var(--ss-ease-spring), background-color 200ms ease, border-color 200ms ease;
+  color: #FFFFFF;
+}
+
+.policyCard:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.policyCard:hover .kineticArrow {
+  transform: translateX(4px);
+}
+
+/* Focus halos */
+.accessibleFocus {
+  outline: none;
+}
+
+.accessibleFocus:focus-visible {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  .heroPrimaryCta,
+  .heroSecondaryCta,
+  .stageCard,
+  .stagePhoto,
+  .blushItem,
+  .nextSourceCard,
+  .policyCard,
+  .kineticArrow {
+    transition: none !important;
+    transform: none !important;
+  }
+}

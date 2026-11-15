@@ -1,0 +1,517 @@
+/* ==========================================================================
+   FAQ Editorial Route Stylesheet
+   Art-directed luxury editorial aesthetic for /faq (Warm Travertine & Olive)
+   Preserves 100% route scoping under .faqEditorialRoot
+   ========================================================================== */
+
+.faqEditorialRoot {
+  --faq-bg: #f7f4ee;
+  --faq-surface: #fffdf8;
+  --faq-card: #ffffff;
+  --faq-border: #e8dfd2;
+  --faq-border-subtle: rgba(232, 223, 210, 0.82);
+  --faq-text-primary: #101820;
+  --faq-text-secondary: #50606b;
+  --faq-text-muted: #7a858d;
+  --faq-accent: #2f9fb3;
+  --faq-focus-ring: #1f7a8c;
+  --faq-dark-bg: #0d1015;
+  --faq-dark-border: rgba(255, 255, 255, 0.12);
+
+  background-color: var(--faq-bg);
+  color: var(--faq-text-primary);
+  font-family: var(--font-body, 'Outfit', sans-serif);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Typography Moments */
+.faqHeadline {
+  font-family: var(--font-editorial, 'Cormorant Garamond', Georgia, serif);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+  color: inherit;
+}
+
+.faqSectionTitle {
+  font-family: var(--font-editorial, 'Cormorant Garamond', Georgia, serif);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: inherit;
+}
+
+.faqKicker {
+  font-family: var(--font-heading, 'Syncopate', sans-serif);
+  font-size: 0.6875rem; /* 11px */
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+/* Hero Section with Directional Scrim */
+.faqHeroSection {
+  position: relative;
+  min-height: 560px;
+  background-color: var(--faq-bg);
+  border-bottom: 1px solid var(--faq-border);
+  overflow: hidden;
+}
+
+.faqHeroBgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  z-index: 1;
+}
+
+.faqHeroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    #f7f4ee 0%,
+    rgba(247, 244, 238, 0.98) 46%,
+    rgba(247, 244, 238, 0.82) 62%,
+    rgba(247, 244, 238, 0.25) 82%,
+    rgba(247, 244, 238, 0) 100%
+  );
+}
+
+@media (max-width: 1023px) {
+  .faqHeroScrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(247, 244, 238, 0.98) 0%,
+      rgba(247, 244, 238, 0.94) 65%,
+      rgba(247, 244, 238, 0.85) 100%
+    );
+  }
+}
+
+.faqHeroContent {
+  position: relative;
+  z-index: 10;
+}
+
+/* Vertical Status Track on the far right */
+.faqVerticalTrack {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .faqVerticalTrack {
+    position: absolute;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 10;
+    pointer-events: none;
+  }
+}
+
+.faqTrackLine {
+  width: 1px;
+  height: 140px;
+  background: linear-gradient(to bottom, transparent, rgba(16, 24, 32, 0.3), transparent);
+}
+
+.faqTrackDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: var(--faq-text-primary);
+  box-shadow: 0 0 0 3px rgba(16, 24, 32, 0.15);
+}
+
+.faqTrackText {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-heading, 'Syncopate', sans-serif);
+  font-size: 0.5625rem; /* 9px */
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--faq-text-secondary);
+  opacity: 0.85;
+}
+
+/* Search Input Pill */
+.faqSearchPill {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  min-height: 52px;
+  background: #ffffff;
+  border: 1px solid var(--faq-border);
+  border-radius: 9999px;
+  padding: 0.375rem 0.5rem 0.375rem 1.25rem;
+  box-shadow: 0 4px 20px -2px rgba(16, 24, 32, 0.05);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faqSearchPill:focus-within {
+  border-color: var(--faq-focus-ring);
+  box-shadow: 0 0 0 3px rgba(31, 122, 140, 0.18), 0 8px 24px -4px rgba(16, 24, 32, 0.08);
+  transform: translateY(-1px);
+}
+
+.faqSearchInput {
+  flex: 1;
+  min-height: 44px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.9375rem;
+  color: var(--faq-text-primary);
+  padding: 0.5rem 0.75rem;
+}
+
+.faqSearchInput::placeholder {
+  color: var(--faq-text-muted);
+}
+
+.faqSearchButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 9999px;
+  background-color: var(--faq-text-primary);
+  color: #ffffff;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.faqSearchButton:hover {
+  background-color: #24303a;
+  transform: scale(1.05);
+}
+
+/* Quick Links 3-Card Bento */
+.faqCardBento {
+  background-color: var(--faq-surface);
+  border: 1px solid var(--faq-border-subtle);
+  border-radius: 2rem;
+  padding: 2rem;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.faqCardBento:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -8px rgba(16, 24, 32, 0.07);
+  border-color: rgba(16, 24, 32, 0.2);
+}
+
+.faqIconBadge {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: #f0ebe1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--faq-text-primary);
+  margin-bottom: 1.25rem;
+}
+
+/* Category Sidebar Rail */
+.faqCategoryButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.875rem 1.125rem;
+  border-radius: 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--faq-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.faqCategoryButton:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--faq-text-primary);
+}
+
+.faqCategoryButtonActive {
+  background-color: #ffffff;
+  color: var(--faq-text-primary);
+  font-weight: 600;
+  border-color: var(--faq-border);
+  box-shadow: 0 4px 16px -2px rgba(16, 24, 32, 0.05);
+}
+
+.faqCountBadge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background-color: #eae3d5;
+  color: var(--faq-text-primary);
+}
+
+/* Force PageOwnership inside Sidebar to single column and travertine harmony */
+.faqSidebarOwnership dl {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.faqSidebarOwnership dl > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(232, 223, 210, 0.8) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 1px 3px rgba(16, 24, 32, 0.03) !important;
+  transition: border-color 0.2s ease;
+}
+
+.faqSidebarOwnership dl > div:hover {
+  border-color: rgba(16, 24, 32, 0.2) !important;
+}
+
+.faqSidebarOwnership aside {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.faqSidebarOwnership aside [class*="bg-cyan"],
+.faqSidebarOwnership aside [class*="text-cyan"] {
+  background-color: #f0ebe1 !important;
+  color: var(--faq-text-primary) !important;
+  border-color: #e8dfd2 !important;
+}
+
+.faqSidebarOwnership dt {
+  color: #7a858d !important;
+  font-family: var(--font-heading, 'Syncopate', sans-serif) !important;
+  letter-spacing: 0.15em !important;
+  font-size: 0.6875rem !important;
+}
+
+.faqSidebarOwnership a[class*="min-h-11"] {
+  border-radius: 9999px !important;
+  border: 1px solid #e8dfd2 !important;
+  background-color: #ffffff !important;
+  color: #101820 !important;
+  font-weight: 600 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.faqSidebarOwnership a[class*="min-h-11"]:hover {
+  border-color: #101820 !important;
+  background-color: #f7f4ee !important;
+}
+
+/* Accordion Item */
+.faqAccordionItem {
+  background-color: #ffffff;
+  border: 1px solid var(--faq-border-subtle);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faqAccordionItem:hover {
+  border-color: rgba(16, 24, 32, 0.18);
+  box-shadow: 0 6px 20px -4px rgba(16, 24, 32, 0.04);
+}
+
+.faqAccordionHeader {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.375rem 1.5rem;
+  text-align: left;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--faq-text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.faqAccordionHeader:focus-visible {
+  outline: 2px solid var(--faq-focus-ring);
+  outline-offset: -2px;
+}
+
+.faqToggleCircle {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 9999px;
+  border: 1px solid var(--faq-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--faq-text-primary);
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+.faqAccordionItem:hover .faqToggleCircle {
+  background-color: #f7f4ee;
+}
+
+.faqAccordionBody {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--faq-text-secondary);
+}
+
+/* Category Teaser Card */
+.faqCategoryTeaser {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 88px;
+  background-color: #ffffff;
+  border: 1px solid var(--faq-border-subtle);
+  border-radius: 1.5rem;
+  padding: 1rem 1.5rem 1rem 1rem;
+  gap: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease;
+}
+
+.faqCategoryTeaser:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -6px rgba(16, 24, 32, 0.06);
+  border-color: rgba(16, 24, 32, 0.18);
+}
+
+.faqTeaserThumb {
+  width: 140px;
+  height: 80px;
+  border-radius: 0.875rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Dark Leather / Chamber Porthole CTA Band */
+.faqCtaBand {
+  position: relative;
+  background-color: var(--faq-dark-bg);
+  color: #ffffff;
+  border-top: 1px solid var(--faq-dark-border);
+  border-bottom: 1px solid var(--faq-dark-border);
+  overflow: hidden;
+  padding: 5rem 0;
+}
+
+.faqCtaBgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  z-index: 1;
+  opacity: 0.92;
+}
+
+.faqCtaScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    #0d1015 0%,
+    rgba(13, 16, 21, 0.96) 48%,
+    rgba(13, 16, 21, 0.72) 72%,
+    rgba(13, 16, 21, 0.15) 100%
+  );
+}
+
+@media (max-width: 1023px) {
+  .faqCtaScrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(13, 16, 21, 0.98) 0%,
+      rgba(13, 16, 21, 0.92) 100%
+    );
+  }
+}
+
+.faqCtaContent {
+  position: relative;
+  z-index: 10;
+}
+
+.faqCtaPillButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  color: #0d1015;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
+}
+
+.faqCtaPillButton:hover {
+  background-color: #f2ece1;
+  transform: translateY(-2px);
+}
+
+/* Regulatory Strip */
+.faqNoticeStrip {
+  background-color: #f2ece1;
+  border-bottom: 1px solid var(--faq-border);
+  padding: 1.25rem 0;
+  font-size: 0.8125rem;
+  color: var(--faq-text-secondary);
+}
+
+/* Accessibility & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .faqEditorialRoot *,
+  .faqSearchPill,
+  .faqSearchButton,
+  .faqCardBento,
+  .faqCategoryButton,
+  .faqAccordionItem,
+  .faqCategoryTeaser,
+  .faqCtaPillButton {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    transform: none !important;
+  }
+}

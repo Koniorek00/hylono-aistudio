@@ -1,0 +1,73 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "types": ["node"],
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dist-ssr",
+    "archive",
+    "_archive",
+    "_backup",
+    "backups",
+    "protected-ui-backup-2026-02-16",
+    "compressed-web",
+    "sandbox",
+    "artifacts",
+    "components/_unused",
+    "components/Hero45",
+    "components/Hero46",
+    "components/Hero46T2",
+    "components/HeroGPT",
+    "components/MegaMenu.backup.tsx",
+    "components/TechDetail.backup.tsx",
+    "lib/rbac",
+    "e2e",
+    "playwright.config.ts",
+    "control-panel",
+    "VitalTrack",
+    "hylono-app-antigravity",
+    "projects",
+    "service app",
+    "docker/phase-1a/vendor"
+  ],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next-check/types/**/*.ts",
+    ".next-check/dev/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    ".next-current-route-manifest/types/**/*.ts",
+    ".next-current-route-manifest/dev/types/**/*.ts"
+  ]
+}

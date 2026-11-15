@@ -1,0 +1,787 @@
+/*
+ * DECISION: Restore the bright Hylono identity in Modules, Journey and Trust.
+ * Use the existing heading font and light surface tokens; numeric metadata
+ * stays secondary to readable headings and useful destination descriptions.
+ */
+
+.clinical {
+  --clinical-page: #f8fafc;
+  --clinical-panel: #ffffff;
+  --clinical-raised: #ecfeff;
+  --clinical-line: #dce6ed;
+  --clinical-line-active: #0891b2;
+  --clinical-text: #0f172a;
+  --clinical-muted: #475569;
+  --clinical-steel: #0e7490;
+  --clinical-focus: #0e7490;
+  --clinical-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  min-width: 0;
+  padding-block: clamp(3.5rem, 7vw, 7rem);
+  background: var(--clinical-page);
+  color: var(--clinical-text);
+  font-family: inherit;
+  scroll-margin-top: calc(var(--route-header-offset, 72px) + 1rem);
+}
+
+.clinical,
+.clinical *,
+.clinical *::before,
+.clinical *::after {
+  box-sizing: border-box;
+}
+
+.clinical ::selection {
+  background: var(--clinical-steel);
+  color: var(--clinical-page);
+}
+
+.clinical a:focus-visible {
+  outline: 3px solid var(--clinical-focus);
+  outline-offset: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: 80rem;
+  min-width: 0;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+.sectionHeader,
+.journeyGrid,
+.trustGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.sectionHeader > *,
+.journeyGrid > *,
+.trustGrid > *,
+.cardHeader > *,
+.journeyItemHeader > * {
+  min-width: 0;
+}
+
+.sectionHeader {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.stamp,
+.tag,
+.index,
+.assetIndex,
+.telemetryLabel,
+.telemetryBadge,
+.specification {
+  font-family: var(--clinical-mono);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+}
+
+.stamp {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--clinical-steel);
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.stamp svg {
+  width: 14px;
+  height: 14px;
+}
+
+.stamp svg,
+.cardAction svg,
+.textLink svg {
+  flex: 0 0 auto;
+}
+
+.heading,
+.cardTitle,
+.contactTitle {
+  margin: 0;
+  color: var(--clinical-text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.heading {
+  max-width: 24ch;
+  margin-top: 1rem;
+  font-size: clamp(1.5rem, 2.7vw, 2.6rem);
+}
+
+.introduction,
+.cardDescription,
+.journeyDescription,
+.visualDescription,
+.metricDescription {
+  margin: 0;
+  color: var(--clinical-muted);
+  font-size: 1rem;
+  line-height: max(1.75em, var(--reading-line-height, 1.6) * 1em);
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+.introduction {
+  max-width: 60ch;
+  margin-top: 1.5rem;
+}
+
+.moduleGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.moduleCard {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid var(--clinical-line);
+  background: var(--clinical-panel);
+  color: var(--clinical-text);
+  font-size: 1rem;
+  text-decoration: none;
+  isolation: isolate;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px -24px rgb(15 23 42 / 22%);
+  --module-accent: #0891b2;
+  --module-ink: #0e7490;
+  --module-tint: #ecfeff;
+}
+
+.moduleCard[data-module='Hydrogen'] {
+  --module-accent: #14b8a6;
+  --module-ink: #0f766e;
+  --module-tint: #f0fdfa;
+}
+
+.moduleCard[data-module='Protocols'] {
+  --module-accent: #a855f7;
+  --module-ink: #7e22ce;
+  --module-tint: #faf5ff;
+}
+
+.moduleCard[data-module='Conditions'] {
+  --module-accent: #f97316;
+  --module-ink: #9a3412;
+  --module-tint: #fff7ed;
+}
+
+.moduleCard[data-module='Rental'] {
+  --module-accent: #0ea5e9;
+  --module-ink: #0369a1;
+  --module-tint: #f0f9ff;
+}
+
+.thumbnail,
+.visualImage {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--clinical-page);
+}
+
+.thumbnail {
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--clinical-line);
+  border-radius: 1.25rem;
+}
+
+.moduleImage,
+.researchImage {
+  object-fit: cover;
+}
+
+.assetIndex {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  min-width: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--clinical-line);
+  border-radius: 100px;
+  background: white;
+  color: var(--clinical-text);
+  text-align: center;
+}
+
+.cardHeader,
+.journeyItemHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.tag {
+  padding: 0.35rem 0.75rem;
+  border-radius: 100px;
+  background: var(--module-tint);
+  color: var(--module-ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.index {
+  color: var(--clinical-muted);
+}
+
+/* The complete card is a link: its readable text remains at least 14px. */
+.moduleCard .tag,
+.moduleCard .index,
+.moduleCard .assetIndex,
+.moduleCard .specification {
+  font-size: 0.875rem;
+  letter-spacing: 0.015em;
+}
+
+.cardTitle {
+  margin-top: 1rem;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.45;
+}
+
+.cardDescription {
+  flex: 1;
+  margin-top: 1rem;
+}
+
+.specifications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.specification {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--clinical-line);
+  border-radius: 0.5rem;
+  color: var(--clinical-muted);
+  font-family: var(--font-body);
+  letter-spacing: 0.015em;
+}
+
+.cardAction {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--clinical-line);
+  color: var(--clinical-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.cardAction span,
+.textLink span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cardAction svg,
+.textLink svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cardAction svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.65rem;
+  border-radius: 50%;
+  background: var(--module-tint);
+  color: var(--module-ink);
+}
+
+.journey {
+  border-block: 1px solid var(--clinical-line);
+  background: linear-gradient(120deg, #ecfeff, #f8fafc 65%, #f5f3ff);
+}
+
+.journeyItems {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.journeyItem {
+  padding: 1.25rem;
+  border: 1px solid var(--clinical-line);
+  background: white;
+  border-radius: 1.25rem;
+}
+
+.telemetryLabel {
+  margin: 0;
+  color: var(--clinical-steel);
+  text-transform: uppercase;
+}
+
+.telemetryBadge {
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--clinical-line);
+  color: var(--clinical-muted);
+  letter-spacing: 0.015em;
+  border-radius: 100px;
+  background: #f8fafc;
+  font-family: var(--font-body);
+}
+
+.journeyDescription {
+  margin-top: 0.875rem;
+  color: var(--clinical-text);
+}
+
+.journeyAction {
+  margin-top: 1.5rem;
+}
+
+.textLink {
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.625rem;
+  color: var(--clinical-text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: underline;
+  text-decoration-color: var(--clinical-line-active);
+  text-underline-offset: 0.3em;
+}
+
+.visual {
+  min-width: 0;
+  align-self: center;
+  border: 1px solid var(--clinical-line);
+  background: white;
+  border-radius: 2rem;
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  box-shadow: 0 20px 70px -40px rgb(8 145 178 / 35%);
+}
+
+.pathSteps {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  counter-reset: path;
+}
+
+.pathSteps li {
+  counter-increment: path;
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.pathSteps li::before {
+  content: '0' counter(path);
+  display: grid;
+  place-items: center;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: #cffafe;
+  color: #155e75;
+  font-family: var(--clinical-mono);
+}
+
+.pathSteps a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-weight: 600;
+  color: var(--clinical-text);
+  text-decoration: underline;
+  text-decoration-color: #a5d7e0;
+  text-underline-offset: 0.25em;
+}
+
+.pathSteps p {
+  margin-top: 0.3rem;
+  color: var(--clinical-muted);
+  line-height: 1.7;
+}
+
+.imageNote {
+  margin-top: 1rem;
+  color: var(--clinical-muted);
+  font-size: 0.875rem;
+}
+
+.visualCaption {
+  display: grid;
+  gap: 0.875rem;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--clinical-line);
+}
+
+.visualCaption .telemetryLabel {
+  max-width: 38ch;
+}
+
+.visualDescription {
+  max-width: 48ch;
+  font-size: 0.875rem;
+}
+
+.panel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--clinical-line);
+  background: var(--clinical-panel);
+  border-radius: 2rem;
+}
+
+.panel .heading {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+}
+
+.contactPanel {
+  border-top-color: var(--clinical-line-active);
+  background: linear-gradient(135deg, #ecfeff, #f0fdfa);
+}
+
+.contactTitle {
+  margin-top: 1.5rem;
+  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+  line-height: 1.3;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--clinical-line);
+}
+
+.metric {
+  min-width: 0;
+  padding-block: 1.25rem;
+}
+
+.metric + .metric {
+  border-top: 1px solid var(--clinical-line);
+}
+
+.metricDescription {
+  max-width: 28ch;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 3rem;
+  flex: 1 1 10rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid var(--clinical-line-active);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-radius: 100px;
+}
+
+.primaryButton {
+  background: #22d3ee;
+  border-color: #22d3ee;
+  color: #083344;
+}
+
+.secondaryButton {
+  background: var(--clinical-page);
+  color: var(--clinical-text);
+}
+
+.moduleCard:focus-visible {
+  border-color: var(--clinical-line-active);
+}
+
+.moduleCard:focus-visible .cardAction span {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+@media (min-width: 640px) {
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric:first-child {
+    padding-right: 1.25rem;
+  }
+
+  .metric + .metric {
+    padding-left: 1.25rem;
+    border-top: 0;
+    border-left: 1px solid var(--clinical-line);
+  }
+}
+
+@media (min-width: 768px) {
+  .moduleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sectionHeader {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: end;
+    gap: 3rem;
+  }
+
+  .sectionHeader > .introduction {
+    margin-top: 0;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--clinical-line);
+  }
+}
+
+@media (min-width: 1024px) {
+  .moduleGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .moduleCard:nth-child(-n + 2) {
+    grid-column: span 2;
+  }
+
+  .moduleCard:nth-child(-n + 2) .thumbnail {
+    aspect-ratio: 2 / 1;
+  }
+
+  .moduleCard:nth-child(-n + 2) .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .journeyGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .trustGrid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 1.5rem;
+  }
+
+  .visualCaption {
+    padding-left: 2rem;
+    border-left: 1px solid var(--clinical-line-active);
+  }
+}
+
+@media (hover: hover) {
+  .moduleCard:hover {
+    border-color: var(--module-accent);
+    box-shadow: 0 16px 40px -24px rgb(15 23 42 / 25%);
+  }
+
+  .moduleCard:hover .cardAction span,
+  .textLink:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .primaryButton:hover {
+    background: #67e8f9;
+  }
+
+  .secondaryButton:hover {
+    border-color: var(--clinical-steel);
+    background: var(--clinical-panel);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cardAction svg,
+  .textLink svg {
+    transition: transform var(--duration-ui-fast, 150ms) var(--ease-ui-standard, ease-out);
+  }
+
+  .moduleCard:focus-visible .cardAction svg,
+  .textLink:focus-visible svg {
+    transform: translateX(3px);
+  }
+
+  @media (hover: hover) {
+    .moduleCard:hover .cardAction svg,
+    .textLink:hover svg {
+      transform: translateX(3px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardAction svg,
+  .textLink svg {
+    transition: none;
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .clinical {
+    --clinical-line: #64748b;
+    --clinical-muted: #334155;
+  }
+}
+
+/*
+ * The existing accessibility mode forces blue links and a black focus ring.
+ * Use local light surfaces in that mode instead of fighting its !important
+ * declarations or leaving blue interactive text on carbon backgrounds.
+ */
+:global(.high-contrast-mode) .clinical {
+  --clinical-page: #ffffff;
+  --clinical-panel: #ffffff;
+  --clinical-raised: #f1f3f5;
+  --clinical-line: #505b65;
+  --clinical-line-active: #101820;
+  --clinical-text: #101820;
+  --clinical-muted: #293640;
+  --clinical-steel: #293640;
+  --clinical-focus: #000000;
+}
+
+:global(.high-contrast-mode) .clinical .primaryButton,
+:global(.high-contrast-mode) .clinical .secondaryButton {
+  background: var(--clinical-page);
+  border-color: var(--clinical-line-active);
+}
+
+@media (forced-colors: active) {
+  .clinical,
+  :global(.high-contrast-mode) .clinical {
+    --clinical-page: Canvas;
+    --clinical-panel: Canvas;
+    --clinical-raised: Canvas;
+    --clinical-line: CanvasText;
+    --clinical-line-active: Highlight;
+    --clinical-text: CanvasText;
+    --clinical-muted: CanvasText;
+    --clinical-steel: CanvasText;
+    --clinical-focus: Highlight;
+  }
+
+  .clinical a,
+  .cardAction {
+    color: LinkText;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    background: ButtonFace;
+    color: ButtonText;
+    border-color: ButtonText;
+  }
+
+  .clinical svg {
+    fill: none;
+    stroke: currentColor;
+  }
+}
+
+@media print {
+  .clinical {
+    --clinical-line: #505b65;
+    --clinical-line-active: #101820;
+
+    padding-block: 1.5rem;
+  }
+
+  .moduleCard,
+  .journeyItem,
+  .visual,
+  .panel {
+    break-inside: avoid;
+  }
+
+  .moduleCard::before {
+    display: none;
+  }
+}
+
+.editorialHeading {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', 'Playfair Display', Didot, 'Bodoni MT', Georgia, serif !important;
+  text-transform: none !important;
+  letter-spacing: -0.02em !important;
+  font-weight: 400 !important;
+}
+
+.cleanCardTitle {
+  font-family: var(--font-body), 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 600 !important;
+}
+
+.cleanSubtitle {
+  font-family: var(--font-body), 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-weight: 400 !important;
+}
+
+.monoLabel {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.22em !important;
+  font-size: 0.7rem !important;
+}

@@ -1,0 +1,622 @@
+import arcjet, { detectBot, shield, type ArcjetBotCategory } from '@arcjet/next';
+import * as nosecone from '@nosecone/next';
+import { getToken } from 'next-auth/jwt';
+import { NextRequest, NextResponse } from 'next/server';
+import { getBlogPostBySlug } from './lib/blog';
+import { buildLoginRedirectPath, LOGIN_PATH } from './lib/auth-redirect';
+import { resolveAuthSecret } from './lib/auth-secret';
+import { INTAKE_RATE_LIMIT_WINDOW_SECONDS } from './lib/intake-rate-limit-policy';
+import { conditionGoalBySlug } from './content/conditions';
+import {
+    getHydrogenPremiumPath,
+    hydrogenPremiumAliasToSlug,
+    hydrogenPremiumPageBySlug,
+} from './content/hydrogen-premium-2026';
+import { protocolBySlug } from './content/protocols';
+import {
+    getTechRouteSlug,
+    getTechTypeFromRouteSlug,
+    isStaticProductRouteSlug,
+    LEGACY_PRODUCT_ROUTE_REDIRECTS,
+} from './lib/product-routes';
+import { readRuntimeEnv } from './lib/env';
+
+const AUTH_PROTECTED_EXACT_PATHS = ['/dashboard', '/account', '/partner'] as const;
+const AUTH_PROTECTED_NESTED_PREFIXES = [
+    '/dashboard',
+    '/account',
+    '/partner',
+] as const;
+const LEGACY_GONE_PATH_PREFIXES = [
+    '/quote-checkout-redirect',
+    '/test-code-to-blocks',
+    '/wp-login.php',
+] as const;
+const AUTH_SENSITIVE_EXACT_PATHS = [LOGIN_PATH, ...AUTH_PROTECTED_EXACT_PATHS] as const;
+const AUTH_SESSION_COOKIE_PREFIXES = [
+    'authjs.session-token',
+    '__Secure-authjs.session-token',
+] as const;
+const BOT_ALLOW_LIST: ArcjetBotCategory[] = ['CATEGORY:SEARCH_ENGINE'];
+const CSP_CONNECT_SOURCES = [
+    'https://eu.i.posthog.com',
+    'https://o4509062593708032.ingest.de.sentry.io',
+] as const;
+const NEXT_INLINE_BOOTSTRAP_SCRIPT_HASH =
+    "'sha256-7mu4H06fwDCjmnxxr/xNHyuQC6pLTHr4M2E4jXw5WZs='";
+const NEXT_RENDER_TIMING_SCRIPT_HASH =
+    "'sha256-B4nomcLy87+8Sl1HZWbqw3Y85Yd1EEHdZsYWYiDmlhM='";
+const NEXT_STREAMING_INLINE_SCRIPT_HASH =
+    "'sha256-gyoCZzNah8wEykphZNKy7mjyLzh/qR5B7AfXhI6AouY='";
+const NEXT_STREAMING_INLINE_MAP_SCRIPT_HASH =
+    "'sha256-rimaae54utIpqXy4SfzTCYOBzW44nNmADdqfIGg1pkE='";
+// Next 16.2 emits this fixed React reveal helper for the homepage's schema boundary.
+// Verified against the production response; allow its exact bytes, never unsafe-inline.
+const NEXT_HOME_SCHEMA_REVEAL_SCRIPT_HASH =
+    "'sha256-9V7dm2iwdgPjaoJbaySXkJmq4pxKa/XT8ym8nD2hrNE='";
+
+const ARCJET_KEY = readRuntimeEnv('ARCJET_KEY');
+const AUTH_SECRET = resolveAuthSecret({
+    explicitSecret:
+        readRuntimeEnv('AUTH_SECRET') ?? readRuntimeEnv('NEXTAUTH_SECRET'),
+    nodeEnv:
+        readRuntimeEnv('NODE_ENV') === 'production'
+            ? 'production'
+            : readRuntimeEnv('NODE_ENV') === 'test'
+              ? 'test'
+              : 'development',
+    allowProductionFallback: readRuntimeEnv('VERCEL') !== '1',
+});
+const ARCJET_MODE = ARCJET_KEY ? 'LIVE' : 'DRY_RUN';
+
+const arcjetClient = ARCJET_KEY
+    ? arcjet({
+          key: ARCJET_KEY,
+          characteristics: ['ip.src'],
+          rules: [
+              shield({ mode: ARCJET_MODE }),
+              detectBot({ mode: ARCJET_MODE, allow: BOT_ALLOW_LIST }),
+          ],
+      })
+    : null;
+
+/**
+ * Cloudflare Turnstile serves its challenge script from this origin and renders the
+ * widget in an iframe from the same origin. Both directives are required or the widget
+ * is silently blocked by CSP. Inert when no site key is configured, because
+ * `TurnstileWidget` then renders nothing and the script is never requested.
+ */
+const CSP_TURNSTILE_SOURCE = 'https://challenges.cloudflare.com';
+
+const noseconeOptions: nosecone.NoseconeOptions = {
+    ...nosecone.defaults,
+    contentSecurityPolicy: {
+        ...nosecone.defaults.contentSecurityPolicy,
+        directives: {
+            ...nosecone.defaults.contentSecurityPolicy.directives,
+            connectSrc: [
+                ...nosecone.defaults.contentSecurityPolicy.directives.connectSrc,
+                ...CSP_CONNECT_SOURCES,
+            ],
+            scriptSrc: [
+                ...nosecone.defaults.contentSecurityPolicy.directives.scriptSrc,
+                CSP_TURNSTILE_SOURCE,
+            ],
+            frameSrc: [
+                // 'none' cannot coexist with an allowed origin in a CSP directive.
+                CSP_TURNSTILE_SOURCE,
+            ],
+        },
+    },
+};
+
+const noseconeMiddleware = nosecone.createMiddleware(noseconeOptions);
+
+type ConsentRecord = {
+    analytics?: boolean;
+    marketing?: boolean;
+};
+
+type ConsentGateCookieValue = 'granted' | 'denied';
+
+const CONSENT_COOKIE_NAME = 'cookieConsent';
+const ANALYTICS_GATE_COOKIE_NAME = 'hylono_analytics';
+const MARKETING_GATE_COOKIE_NAME = 'hylono_marketing';
+const CONSENT_GATE_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 180;
+
+const isProtectedPath = (pathname: string): boolean =>
+    AUTH_PROTECTED_EXACT_PATHS.some((path) => pathname === path)
+    || AUTH_PROTECTED_NESTED_PREFIXES.some((prefix) => pathname.startsWith(`${prefix}/`));
+
+const isAuthSensitivePath = (pathname: string): boolean =>
+    AUTH_SENSITIVE_EXACT_PATHS.some((path) => pathname === path)
+    || AUTH_PROTECTED_NESTED_PREFIXES.some((prefix) => pathname.startsWith(`${prefix}/`));
+
+const isLegacyGonePath = (pathname: string): boolean =>
+    LEGACY_GONE_PATH_PREFIXES.some(
+        (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+    );
+
+type SeoRouteResolution =
+    | { kind: 'ok' }
+    | { kind: 'redirect'; location: URL }
+    | { kind: 'gone' }
+    | { kind: 'not-found'; location: URL };
+
+const createSeoRouteResolver = (request: NextRequest): SeoRouteResolution => {
+    const { pathname, search } = request.nextUrl;
+    const withSameOriginPath = (targetPath: string): URL => new URL(`${targetPath}${search}`, request.url);
+    const notFoundLocation = (): URL => new URL('/_not-found', request.url);
+    const canonicalAccountLoginLocation = (): URL =>
+        new URL(buildLoginRedirectPath('/account'), request.url);
+    const getSingleSegment = (prefix: string): string | null => {
+        if (!pathname.startsWith(`${prefix}/`)) return null;
+
+        const segment = pathname.slice(prefix.length + 1);
+        if (!segment || segment.includes('/')) return null;
+
+        return decodeURIComponent(segment);
+    };
+
+    // Collapse legacy customer-account aliases into the real account auth flow.
+    if (pathname === '/my-account' || pathname.startsWith('/my-account/')) {
+        return {
+            kind: 'redirect',
+            location: canonicalAccountLoginLocation(),
+        };
+    }
+
+    // Never preserve removed legacy CMS/test artifacts on the public marketing site.
+    if (isLegacyGonePath(pathname)) {
+        return { kind: 'gone' };
+    }
+
+    const hydrogenModelSlug = getSingleSegment('/product/hydrogen');
+    if (hydrogenModelSlug) {
+        const normalizedHydrogenModelSlug = hydrogenModelSlug.toLowerCase();
+        const targetSlug = hydrogenPremiumAliasToSlug[normalizedHydrogenModelSlug];
+
+        if (!targetSlug) {
+            return { kind: 'not-found', location: notFoundLocation() };
+        }
+
+        return {
+            kind: 'redirect',
+            location: withSameOriginPath(getHydrogenPremiumPath(targetSlug)),
+        };
+    }
+
+    const productSlug = getSingleSegment('/product');
+    if (productSlug) {
+        const normalizedProductSlug = productSlug.toLowerCase();
+        const legacyRedirect =
+            LEGACY_PRODUCT_ROUTE_REDIRECTS[
+                normalizedProductSlug as keyof typeof LEGACY_PRODUCT_ROUTE_REDIRECTS
+            ];
+
+        if (legacyRedirect) {
+            return {
+                kind: 'redirect',
+                location: withSameOriginPath(`/product/${legacyRedirect}`),
+            };
+        }
+
+        if (normalizedProductSlug in hydrogenPremiumPageBySlug) {
+            return { kind: 'ok' };
+        }
+
+        if (isStaticProductRouteSlug(normalizedProductSlug)) {
+            return { kind: 'ok' };
+        }
+
+        const techType = getTechTypeFromRouteSlug(normalizedProductSlug);
+        if (!techType) {
+            return { kind: 'not-found', location: notFoundLocation() };
+        }
+
+        const canonicalSlug = getTechRouteSlug(techType);
+        if (productSlug !== canonicalSlug) {
+            return {
+                kind: 'redirect',
+                location: withSameOriginPath(`/product/${canonicalSlug}`),
+            };
+        }
+    }
+
+    const conditionSlug = getSingleSegment('/conditions');
+    if (conditionSlug) {
+        const canonicalConditionSlug = conditionSlug.toLowerCase();
+        if (!conditionGoalBySlug[canonicalConditionSlug]) {
+            return { kind: 'not-found', location: notFoundLocation() };
+        }
+
+        if (conditionSlug !== canonicalConditionSlug) {
+            return {
+                kind: 'redirect',
+                location: withSameOriginPath(`/conditions/${canonicalConditionSlug}`),
+            };
+        }
+    }
+
+    const protocolSlug = getSingleSegment('/protocols');
+    if (protocolSlug) {
+        const canonicalProtocolSlug = protocolSlug.toLowerCase();
+        if (!protocolBySlug[canonicalProtocolSlug]) {
+            return { kind: 'not-found', location: notFoundLocation() };
+        }
+
+        if (protocolSlug !== canonicalProtocolSlug) {
+            return {
+                kind: 'redirect',
+                location: withSameOriginPath(`/protocols/${canonicalProtocolSlug}`),
+            };
+        }
+    }
+
+    const blogSlug = getSingleSegment('/blog');
+    if (blogSlug) {
+        const canonicalBlogSlug = blogSlug.toLowerCase();
+        if (!getBlogPostBySlug(canonicalBlogSlug)) {
+            return { kind: 'not-found', location: notFoundLocation() };
+        }
+
+        if (blogSlug !== canonicalBlogSlug) {
+            return {
+                kind: 'redirect',
+                location: withSameOriginPath(`/blog/${canonicalBlogSlug}`),
+            };
+        }
+    }
+
+    return { kind: 'ok' };
+};
+
+const parseConsentCookie = (rawValue: string | undefined): ConsentRecord | null => {
+    if (!rawValue) return null;
+
+    try {
+        const parsed = JSON.parse(decodeURIComponent(rawValue)) as ConsentRecord;
+        const hasConsentSignal =
+            typeof parsed.analytics === 'boolean' || typeof parsed.marketing === 'boolean';
+
+        if (!hasConsentSignal) {
+            return null;
+        }
+
+        return {
+            analytics: parsed.analytics === true,
+            marketing: parsed.marketing === true,
+        };
+    } catch {
+        return null;
+    }
+};
+
+const syncConsentGateCookie = ({
+    request,
+    response,
+    name,
+    value,
+    secure,
+}: {
+    request: NextRequest;
+    response: NextResponse;
+    name: typeof ANALYTICS_GATE_COOKIE_NAME | typeof MARKETING_GATE_COOKIE_NAME;
+    value: ConsentGateCookieValue;
+    secure: boolean;
+}): void => {
+    if (request.cookies.get(name)?.value === value) {
+        return;
+    }
+
+    response.cookies.set(name, value, {
+        httpOnly: false,
+        secure,
+        sameSite: 'lax',
+        path: '/',
+        maxAge: CONSENT_GATE_COOKIE_MAX_AGE_SECONDS,
+    });
+};
+
+const createNonce = (): string => btoa(crypto.randomUUID());
+
+const applyNonceToCsp = (
+    cspHeader: string,
+    nonce: string,
+    options: { allowUnsafeInline?: boolean } = {}
+): string => {
+    if (options.allowUnsafeInline) {
+        return cspHeader.replace(/script-src([^;]*);/i, (fullMatch, directiveValue) => {
+            const cleanedDirectiveValue = directiveValue
+                .replace(/'nonce-[^']+'/g, '')
+                .replace(/'sha256-[^']+'/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            const unsafeInlineDirective = cleanedDirectiveValue.includes("'unsafe-inline'")
+                ? cleanedDirectiveValue
+                : `${cleanedDirectiveValue} 'unsafe-inline'`.trim();
+
+            return `script-src ${unsafeInlineDirective};`;
+        });
+    }
+
+    const nonceAdjusted = cspHeader.replace(/'nonce-[^']+'/g, `'nonce-${nonce}'`);
+
+    return nonceAdjusted.replace(/script-src([^;]*);/i, (fullMatch, directiveValue) => {
+        const requiredHashes = [
+            NEXT_INLINE_BOOTSTRAP_SCRIPT_HASH,
+            NEXT_RENDER_TIMING_SCRIPT_HASH,
+            NEXT_STREAMING_INLINE_SCRIPT_HASH,
+            NEXT_STREAMING_INLINE_MAP_SCRIPT_HASH,
+            NEXT_HOME_SCHEMA_REVEAL_SCRIPT_HASH,
+        ].filter((hash) => !directiveValue.includes(hash));
+
+        if (requiredHashes.length === 0) {
+            return fullMatch;
+        }
+
+        return `script-src${directiveValue} ${requiredHashes.join(' ')};`;
+    });
+};
+
+type SecurityHeaders = {
+    responseHeaders: Array<[string, string]>;
+    contentSecurityPolicy: string | null;
+    contentSecurityPolicyReportOnly: string | null;
+};
+
+const isLocalHostname = (hostname: string): boolean => {
+    const normalized = hostname.toLowerCase();
+    return normalized === 'localhost' || normalized === '127.0.0.1' || normalized === '::1';
+};
+
+const resolveSecurityHeaders = async (
+    nonce: string,
+    options: { allowUnsafeInline?: boolean } = {}
+): Promise<SecurityHeaders> => {
+    const noseconeResponse = await noseconeMiddleware();
+    const responseHeaders: Array<[string, string]> = [];
+    let contentSecurityPolicy: string | null = null;
+    let contentSecurityPolicyReportOnly: string | null = null;
+
+    for (const [header, value] of noseconeResponse.headers.entries()) {
+        if (header === 'x-middleware-next') continue;
+
+        if (
+            header === 'content-security-policy' ||
+            header === 'content-security-policy-report-only'
+        ) {
+            const nonceAdjustedValue = applyNonceToCsp(value, nonce, options);
+
+            if (header === 'content-security-policy') {
+                contentSecurityPolicy = nonceAdjustedValue;
+            } else {
+                contentSecurityPolicyReportOnly = nonceAdjustedValue;
+            }
+
+            responseHeaders.push([header, nonceAdjustedValue]);
+            continue;
+        }
+
+        responseHeaders.push([header, value]);
+    }
+
+    return {
+        responseHeaders,
+        contentSecurityPolicy,
+        contentSecurityPolicyReportOnly,
+    };
+};
+
+const hasSessionCookie = (request: NextRequest): boolean =>
+    request.cookies
+        .getAll()
+        .some(({ name }) =>
+            AUTH_SESSION_COOKIE_PREFIXES.some(
+                (prefix) => name === prefix || name.startsWith(`${prefix}.`)
+            )
+        );
+
+const hasValidatedSession = async (request: NextRequest): Promise<boolean> => {
+    if (!hasSessionCookie(request)) {
+        return false;
+    }
+
+    if (!AUTH_SECRET) {
+        return false;
+    }
+
+    const token = await getToken({
+        req: request,
+        secret: AUTH_SECRET,
+        secureCookie: request.nextUrl.protocol === 'https:',
+    });
+
+    return Boolean(token);
+};
+
+const appendVaryHeader = (response: NextResponse, headerValue: string): void => {
+    const existingValue = response.headers.get('vary');
+
+    if (!existingValue) {
+        response.headers.set('vary', headerValue);
+        return;
+    }
+
+    const normalizedExistingValues = existingValue
+        .split(',')
+        .map((value) => value.trim().toLowerCase());
+
+    if (!normalizedExistingValues.includes(headerValue.toLowerCase())) {
+        response.headers.set('vary', `${existingValue}, ${headerValue}`);
+    }
+};
+
+const applyAuthBoundaryHeaders = (
+    response: NextResponse,
+    pathname: string
+): NextResponse => {
+    if (!isAuthSensitivePath(pathname)) {
+        return response;
+    }
+
+    response.headers.set('cache-control', 'private, no-store, max-age=0');
+    appendVaryHeader(response, 'Cookie');
+
+    return response;
+};
+
+const withNoseconeHeaders = (
+    response: NextResponse,
+    securityHeaders: SecurityHeaders,
+    nonce: string,
+    pathname: string
+): NextResponse => {
+    for (const [header, value] of securityHeaders.responseHeaders) {
+        response.headers.set(header, value);
+    }
+
+    response.headers.set('x-nonce', nonce);
+
+    return applyAuthBoundaryHeaders(response, pathname);
+};
+
+export async function proxy(request: NextRequest): Promise<NextResponse> {
+    const { pathname, searchParams } = request.nextUrl;
+    const nonce = createNonce();
+    const securityHeaders = await resolveSecurityHeaders(nonce, {
+        allowUnsafeInline: isLocalHostname(request.nextUrl.hostname),
+    });
+
+    // 1) Arcjet protection on the page routes (except local dev when the key is
+    //    missing). Note the matcher at the bottom of this file excludes `/api`, so API
+    //    routes do NOT pass through here - see lib/intake-rate-limit-policy.ts.
+    if (arcjetClient) {
+        const decision = await arcjetClient.protect(request);
+
+        if (decision.isDenied()) {
+            // A rate-limited caller is not forbidden, it is early. Reporting 403 would
+            // tell a legitimate visitor their request will never be allowed. No rule
+            // configured here produces a rate-limit decision today; this mapping exists
+            // so that adding one cannot silently answer 403.
+            if (decision.reason.isRateLimit()) {
+                const rateLimitedResponse = new NextResponse('Too Many Requests', {
+                    status: 429,
+                });
+                rateLimitedResponse.headers.set(
+                    'Retry-After',
+                    String(INTAKE_RATE_LIMIT_WINDOW_SECONDS)
+                );
+
+                return withNoseconeHeaders(
+                    rateLimitedResponse,
+                    securityHeaders,
+                    nonce,
+                    pathname
+                );
+            }
+
+            return withNoseconeHeaders(
+                new NextResponse('Forbidden', { status: 403 }),
+                securityHeaders,
+                nonce,
+                pathname
+            );
+        }
+    }
+
+    const seoRouteResolution = createSeoRouteResolver(request);
+    if (seoRouteResolution.kind === 'redirect') {
+        return withNoseconeHeaders(
+            NextResponse.redirect(seoRouteResolution.location, { status: 308 }),
+            securityHeaders,
+            nonce,
+            pathname
+        );
+    }
+
+    if (seoRouteResolution.kind === 'gone') {
+        const response = new NextResponse(null, { status: 410 });
+        response.headers.set('Cache-Control', 'public, max-age=86400, s-maxage=86400');
+        response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+
+        return withNoseconeHeaders(response, securityHeaders, nonce, pathname);
+    }
+
+    if (seoRouteResolution.kind === 'not-found') {
+        return withNoseconeHeaders(
+            NextResponse.rewrite(seoRouteResolution.location, { status: 404 }),
+            securityHeaders,
+            nonce,
+            pathname
+        );
+    }
+
+    // 2) Protected-route gate backed by the real Auth.js session token when a secret is available.
+    if (isProtectedPath(pathname) && !(await hasValidatedSession(request))) {
+        const nextPath = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
+        const loginUrl = new URL(buildLoginRedirectPath(nextPath), request.url);
+        return withNoseconeHeaders(
+            NextResponse.redirect(loginUrl),
+            securityHeaders,
+            nonce,
+            pathname
+        );
+    }
+
+    // 3) GDPR tracking gate cookies (default denied unless explicit cookie consent indicates granted)
+    const consent = parseConsentCookie(request.cookies.get(CONSENT_COOKIE_NAME)?.value);
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-nonce', nonce);
+
+    if (securityHeaders.contentSecurityPolicy) {
+        requestHeaders.set('content-security-policy', securityHeaders.contentSecurityPolicy);
+    }
+
+    if (securityHeaders.contentSecurityPolicyReportOnly) {
+        requestHeaders.set(
+            'content-security-policy-report-only',
+            securityHeaders.contentSecurityPolicyReportOnly
+        );
+    }
+
+    const response = NextResponse.next({
+        request: {
+            headers: requestHeaders,
+        },
+    });
+    const secureCookie = request.nextUrl.protocol === 'https:';
+
+    if (consent) {
+        syncConsentGateCookie({
+            request,
+            response,
+            name: ANALYTICS_GATE_COOKIE_NAME,
+            value: consent.analytics ? 'granted' : 'denied',
+            secure: secureCookie,
+        });
+        syncConsentGateCookie({
+            request,
+            response,
+            name: MARKETING_GATE_COOKIE_NAME,
+            value: consent.marketing ? 'granted' : 'denied',
+            secure: secureCookie,
+        });
+    }
+
+    return withNoseconeHeaders(response, securityHeaders, nonce, pathname);
+}
+
+export const config = {
+    matcher: [
+        {
+            source:
+                '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js|map|txt|xml|woff|woff2|ttf)$).*)',
+            missing: [
+                { type: 'header', key: 'next-router-prefetch' },
+                { type: 'header', key: 'purpose', value: 'prefetch' },
+            ],
+        },
+    ],
+};

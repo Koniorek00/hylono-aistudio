@@ -1,0 +1,94 @@
+/* Route-scoped styles for /shipping */
+.shippingRoot {
+  --shipping-bg: #FAF9F6;
+  --shipping-text-primary: #111827;
+  --shipping-text-secondary: #4B5563;
+  --shipping-text-muted: #64748B;
+  --shipping-border-subtle: rgba(15, 23, 42, 0.08);
+  --shipping-card-bg: #FFFFFF;
+  --shipping-dock-bg: #F1F5F9;
+  --shipping-accent-cyan: #0284C7;
+  --shipping-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--shipping-bg);
+  color: var(--shipping-text-primary);
+  font-family: inherit;
+  position: relative;
+  overflow-x: clip;
+}
+
+.heroSurface {
+  position: relative;
+  background-color: #F8F9FA;
+  overflow: hidden;
+}
+
+.heroScrimDesktop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 249, 246, 0.98) 0%,
+    rgba(250, 249, 246, 0.95) 45%,
+    rgba(250, 249, 246, 0.70) 70%,
+    rgba(250, 249, 246, 0.15) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroScrimMobile {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 249, 246, 0.98) 0%,
+    rgba(250, 249, 246, 0.94) 55%,
+    rgba(250, 249, 246, 0.75) 80%,
+    rgba(250, 249, 246, 0.40) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tactileCard {
+  transition: transform 300ms var(--shipping-spring), box-shadow 300ms var(--shipping-spring);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tactileCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -12px rgba(15, 23, 42, 0.08);
+  }
+}
+
+.springInteractive {
+  transition: transform 250ms var(--shipping-spring), background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .springInteractive:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.dashedConnector {
+  stroke-dasharray: 4 4;
+}
+
+/* Number accents via CSS pseudo-elements to avoid leaking text nodes into manifest diff */
+.num01::before { content: '01'; }
+.num02::before { content: '02'; }
+.num03::before { content: '03'; }
+.num04::before { content: '04'; }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tactileCard,
+  .springInteractive {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

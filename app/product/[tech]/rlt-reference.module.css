@@ -1,0 +1,99 @@
+/* RLT (PBM / Red Light) editorial restoration tokens.
+   Mirrors the HBOT bright-reference contract in hbot-reference.module.css so the
+   product route family keeps one shared visual language, but swaps the modality
+   accent to the brand-mandated deep mitochondrial crimson + infrared amber. */
+.reference {
+  --pdp-page: #FBF7F4;
+  --pdp-panel: #FFFFFF;
+  --pdp-inset: #F7EDE7;
+  --pdp-title: #1C1917;
+  --pdp-body: #44403C;
+  --pdp-muted: #57534E;
+  --pdp-accent: #9F1239;
+  --pdp-accent-soft: #FDECEF;
+  --pdp-ember: #B45309;
+  --pdp-border: #E7DCD4;
+  --pdp-hover: #F5EFEA;
+  --pdp-radius: 2rem;
+  --pdp-focus: #9F1239;
+  --pdp-success: #047857;
+  --pdp-success-bg: #d1fae5;
+  --pdp-info-bg: #fef3c7;
+  --pdp-warning-bg: #fef3c7;
+  --pdp-warning: #92400e;
+  --pdp-danger: #b91c1c;
+  --pdp-violet: #6d28d9;
+  --pdp-teal: #0f766e;
+  --pdp-decoration: #cbd5e1;
+  background: var(--pdp-page);
+  color: var(--pdp-title);
+}
+
+.reference :global(h1),
+.reference :global(h2),
+.reference :global(h3),
+.reference :global(h4),
+.reference :global(h5),
+.reference :global(h6) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+}
+
+.reference :global(.editorial-serif),
+.reference :global(.font-serif) {
+  font-family: "Cormorant Garamond", "Playfair Display", Didot, "Bodoni MT", Georgia, Cambria, "Times New Roman", serif !important;
+  letter-spacing: -0.025em !important;
+  text-transform: none !important;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1 !important;
+}
+
+.reference :where(section[id]) {
+  scroll-margin-top: 8rem;
+}
+
+/* Specific editorial title sizes */
+.reference :global(.editorial-hero) {
+  font-family: "Cormorant Garamond", "Playfair Display", Didot, "Bodoni MT", Georgia, Cambria, "Times New Roman", serif !important;
+  font-size: clamp(2.5rem, 5vw, 4.25rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.03em !important;
+  text-transform: none !important;
+}
+
+.reference :global(.editorial-section) {
+  font-family: "Cormorant Garamond", "Playfair Display", Didot, "Bodoni MT", Georgia, Cambria, "Times New Roman", serif !important;
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem) !important;
+  line-height: 1.15 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+.reference :global(.editorial-card) {
+  font-family: "Cormorant Garamond", "Playfair Display", Didot, "Bodoni MT", Georgia, Cambria, "Times New Roman", serif !important;
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem) !important;
+  line-height: 1.2 !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+  text-transform: none !important;
+}
+
+/* Infrared containment field used behind the dark evidence band. */
+.reference .emberGlow {
+  background:
+    radial-gradient(58% 82% at 12% 18%, color-mix(in srgb, var(--pdp-accent) 42%, transparent), transparent 72%),
+    radial-gradient(48% 68% at 92% 78%, color-mix(in srgb, var(--pdp-ember) 30%, transparent), transparent 74%);
+}
+
+.reference :where(a, button, summary):focus-visible {
+  outline: 2px solid var(--pdp-focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reference :where(*) {
+    scroll-behavior: auto;
+  }
+}

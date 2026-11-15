@@ -1,0 +1,681 @@
+.pageShell {
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  background:
+    radial-gradient(circle at top right, rgba(6, 182, 212, 0.18), transparent 28rem),
+    radial-gradient(circle at 20% 15%, rgba(14, 165, 233, 0.12), transparent 24rem),
+    linear-gradient(180deg, #f8fbfc 0%, #f3f7f8 48%, #ffffff 100%);
+  color: #0f172a;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 80rem;
+}
+
+.heroSection,
+.routesSection,
+.detailSection,
+.stateShell {
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.heroSection,
+.stateShell {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-12);
+}
+
+.routesSection,
+.detailSection {
+  padding-bottom: var(--space-16);
+}
+
+.heroGrid,
+.detailGrid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.heroCopy {
+  min-width: 0;
+}
+
+.eyebrow,
+.railEyebrow,
+.storyEyebrow,
+.stateEyebrow,
+.routeLabel,
+.signalLabel {
+  color: #0b7285;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.headline,
+.stateTitle {
+  font-size: clamp(2.6rem, 5.8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin-top: var(--space-4);
+  max-width: 100%;
+  hyphens: none;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  word-break: normal;
+}
+
+.summary,
+.sectionCopy,
+.railCopy,
+.storyBody,
+.storyDetail,
+.routeDescription,
+.stateText,
+.checklistText {
+  color: #334155;
+  font-size: clamp(1.0625rem, 2vw, 1.2rem);
+  line-height: 1.65;
+  max-width: 68ch;
+}
+
+.summary {
+  margin-top: var(--space-6);
+}
+
+.sectionCopy {
+  margin-top: var(--space-4);
+}
+
+.signalGrid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  margin-top: var(--space-8);
+}
+
+.signalCard {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid #d6e2e7;
+  border-radius: 1.4rem;
+  box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.06);
+  padding: var(--space-5);
+}
+
+.signalValue,
+.inlineSignalLink {
+  color: #0f172a;
+  display: inline-block;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: var(--space-3);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+.inlineSignalLink:hover,
+.inlineSignalLink:focus-visible {
+  text-decoration: underline;
+}
+
+.storyPanel,
+.checklistCard,
+.contextCard,
+.stateCard {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d6e2e7;
+  border-radius: 2rem;
+  box-shadow: 0 1.5rem 3.5rem rgba(15, 23, 42, 0.08);
+}
+
+.storyPanel {
+  margin-top: var(--space-10);
+  padding: var(--space-8);
+}
+
+.storyHeader {
+  align-items: end;
+  border-bottom: 1px solid #dbe5eb;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  padding-bottom: var(--space-6);
+}
+
+.storyMeta {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.sectionTitle,
+.routeTitle,
+.storyTitle,
+.railTitle {
+  color: #0f172a;
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+}
+
+.storyGrid,
+.routesGrid {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+.storyGrid {
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.storyCard,
+.routeCard,
+.factCard,
+.checklistItem {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 250, 0.96));
+  border: 1px solid #dbe5eb;
+  border-radius: 1.5rem;
+}
+
+.storyCard {
+  min-height: 100%;
+  padding: var(--space-5);
+}
+
+.storyIndex,
+.checklistIndex {
+  align-items: center;
+  background: #0f172a;
+  border-radius: 999px;
+  color: #f8fafc;
+  display: inline-flex;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  height: 2rem;
+  justify-content: center;
+  letter-spacing: 0.12em;
+  width: 2rem;
+}
+
+.storyTitle {
+  font-size: 1.35rem;
+  margin-top: var(--space-4);
+}
+
+.storyBody,
+.storyDetail {
+  font-size: 1rem;
+  margin-top: var(--space-4);
+}
+
+.storyDetail {
+  color: #475569;
+}
+
+.requestRail {
+  background:
+    radial-gradient(circle at top right, rgba(103, 232, 249, 0.22), transparent 18rem),
+    linear-gradient(180deg, #0f172a 0%, #122a33 100%);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 2rem;
+  box-shadow: 0 1.75rem 3.5rem rgba(15, 23, 42, 0.22);
+  color: #e2e8f0;
+  padding: var(--space-8);
+  position: static;
+}
+
+.railEyebrow {
+  color: #67e8f9;
+}
+
+.railTitle {
+  color: #f8fafc;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-top: var(--space-4);
+}
+
+.railCopy {
+  color: rgba(226, 232, 240, 0.8);
+  font-size: 1rem;
+  margin-top: var(--space-5);
+  max-width: 34ch;
+}
+
+.factGrid {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.factCard {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  padding: var(--space-4);
+}
+
+.factLabel {
+  color: rgba(226, 232, 240, 0.72);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.factValue,
+.railEmail {
+  color: #f8fafc;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.55;
+  margin-top: var(--space-3);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+.railEmail:hover,
+.railEmail:focus-visible {
+  text-decoration: underline;
+}
+
+.primaryAction,
+.secondaryAction,
+.inlineAction,
+.routeAction,
+.contextLink {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.primaryAction,
+.secondaryAction,
+.inlineAction {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0 var(--space-6);
+  text-decoration: none;
+}
+
+.primaryAction {
+  background: #f8fafc;
+  box-shadow: 0 1rem 2.25rem rgba(103, 232, 249, 0.16);
+  color: #0f172a;
+  width: 100%;
+}
+
+.primaryAction:hover {
+  background: #ecfeff;
+  transform: translateY(-1px);
+}
+
+.primaryAction:active {
+  background: #cffafe;
+  transform: translateY(0);
+}
+
+.primaryAction:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 4px;
+}
+
+.primaryAction:disabled,
+.primaryAction[aria-disabled='true'] {
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+  transform: none;
+}
+
+.secondaryActions,
+.inlineActions {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.secondaryAction,
+.inlineAction {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+.secondaryAction:hover,
+.inlineAction:hover {
+  background: #f8fafc;
+  border-color: #67e8f9;
+  transform: translateY(-1px);
+}
+
+.secondaryAction:active,
+.inlineAction:active {
+  transform: translateY(0);
+}
+
+.secondaryAction:focus-visible,
+.inlineAction:focus-visible,
+.routeAction:focus-visible,
+.contextLink:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 3px;
+}
+
+.requestRail .secondaryAction {
+  border-color: rgba(226, 232, 240, 0.2);
+  color: #e2e8f0;
+}
+
+.requestRail .secondaryAction:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #67e8f9;
+}
+
+.sectionHeader {
+  max-width: 70ch;
+}
+
+.routesGrid {
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.routeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 100%;
+  padding: var(--space-6);
+  position: relative;
+}
+
+.routeCard:hover {
+  border-color: #06b6d4;
+  box-shadow: 0 1.25rem 2.75rem rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+}
+
+.routeLabel {
+  font-size: 0.8rem;
+}
+
+.routeTitle {
+  font-size: 1.55rem;
+  margin-top: 0;
+}
+
+.routeDescription {
+  flex: 1;
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.routeAction,
+.contextLink {
+  align-self: flex-start;
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-color: rgba(6, 182, 212, 0.45);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+
+.routeAction:hover,
+.contextLink:hover {
+  color: #0b7285;
+  text-decoration-color: currentColor;
+}
+
+.detailGrid {
+  align-items: start;
+}
+
+.checklistCard,
+.contextCard {
+  padding: var(--space-8);
+}
+
+.checklist,
+.supportRouteList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checklist {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.checklistItem {
+  align-items: start;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: auto 1fr;
+  padding: var(--space-5);
+}
+
+.checklistText {
+  font-size: 1rem;
+  margin: 0;
+  max-width: none;
+}
+
+.contextFacts {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.contextFacts div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contextLabel {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contextFooter {
+  border-top: 1px solid #dbe5eb;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+}
+
+.supportRouteList {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.stateCard {
+  margin: 0 auto;
+  max-width: 48rem;
+  padding: var(--space-10);
+  text-align: left;
+}
+
+.stateTitle {
+  max-width: 14ch;
+}
+
+.stateText {
+  margin-top: var(--space-6);
+}
+
+.stateMessage {
+  background: #f8fafc;
+  border: 1px solid #dbe5eb;
+  border-radius: 1.25rem;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+}
+
+.stateActionStatus {
+  background: #ecfeff;
+  border: 1px solid #bae6fd;
+  border-radius: 1rem;
+  color: #164e63;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+}
+
+.stateActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.stateActions .primaryAction {
+  width: auto;
+}
+
+.stateActions .secondaryAction {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.stateActions .secondaryAction:hover {
+  background: #f8fafc;
+  border-color: #06b6d4;
+}
+
+.loadingBars {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.loadingBar {
+  animation: pulse 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, #dbe5eb, #f8fafc, #dbe5eb);
+  background-size: 200% 100%;
+  border-radius: 999px;
+  display: block;
+  height: 0.9rem;
+}
+
+.loadingBar:nth-child(1) {
+  width: 100%;
+}
+
+.loadingBar:nth-child(2) {
+  width: 86%;
+}
+
+.loadingBar:nth-child(3) {
+  width: 72%;
+}
+
+@media (min-width: 72rem) {
+  .heroGrid {
+    align-items: start;
+    grid-template-columns: minmax(0, 1.35fr) minmax(20rem, 0.9fr);
+    gap: var(--space-12);
+  }
+
+  .requestRail {
+    position: sticky;
+    top: calc(var(--route-header-offset, 72px) + 1.5rem);
+  }
+
+  .detailGrid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .heroSection,
+  .routesSection,
+  .detailSection,
+  .stateShell {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .requestRail,
+  .storyPanel,
+  .checklistCard,
+  .contextCard,
+  .stateCard {
+    border-radius: 1.5rem;
+    padding: var(--space-6);
+  }
+
+  .headline,
+  .stateTitle {
+    font-size: clamp(2rem, 8.8vw, 2.35rem);
+    line-height: 1.08;
+  }
+
+  .stateActions {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryAction,
+  .secondaryAction,
+  .inlineAction,
+  .routeAction,
+  .contextLink,
+  .routeCard,
+  .loadingBar {
+    animation: none;
+    transition: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-position: 100% 50%;
+    opacity: 0.72;
+  }
+
+  50% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+
+  100% {
+    background-position: 100% 50%;
+    opacity: 0.72;
+  }
+}

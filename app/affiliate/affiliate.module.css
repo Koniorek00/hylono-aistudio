@@ -1,0 +1,861 @@
+/* =========================================================================
+   Route-scoped Art-Directed Luxury Editorial Styles for /affiliate
+   Faithfully translating the Swiss Alpine Luxury aesthetic from affiliate.png
+   ========================================================================= */
+
+.affiliateRoot {
+  /* Daylight Palette Variables */
+  --aff-daylight-bg: #f8fafc;
+  --aff-white: #ffffff;
+  --aff-glacier-bg: #f1f6fa;
+  --aff-ice-canvas: #edf4fa;
+  
+  /* Text Contrast Hierarchy (Light Surfaces) */
+  --aff-ink-deep: #0a1120;
+  --aff-ink-charcoal: #0f172a;
+  --aff-ink-slate: #334155;
+  --aff-ink-muted: #64748b;
+  --aff-ink-subtle: #94a3b8;
+  
+  /* Night / Deep Texture Palette */
+  --aff-botanical-bg: #02120b;
+  --aff-botanical-card: rgba(8, 24, 18, 0.78);
+  --aff-twilight-bg: #050a14;
+  --aff-twilight-card: rgba(15, 23, 42, 0.72);
+  --aff-sapphire-bg: #030c18;
+  --aff-sapphire-card: rgba(12, 24, 44, 0.75);
+  
+  /* Modality & Identity Accents */
+  --aff-sky: #0284c7;
+  --aff-sky-bright: #38bdf8;
+  --aff-sky-soft: rgba(2, 132, 199, 0.08);
+  --aff-sky-glow: rgba(56, 189, 248, 0.25);
+  
+  --aff-emerald: #10b981;
+  --aff-emerald-bright: #34d399;
+  --aff-emerald-soft: rgba(16, 185, 129, 0.12);
+  
+  /* Borders & Hairlines */
+  --aff-border-light: rgba(15, 23, 42, 0.08);
+  --aff-border-glass: rgba(255, 255, 255, 0.85);
+  --aff-border-dark-glass: rgba(255, 255, 255, 0.12);
+  --aff-border-sky: rgba(2, 132, 199, 0.25);
+  
+  /* Physics */
+  --aff-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --aff-radius-card: 1.25rem;
+  --aff-radius-pill: 9999px;
+  
+  min-height: 100vh;
+  background-color: var(--aff-daylight-bg);
+  color: var(--aff-ink-charcoal);
+  overflow-x: hidden;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================================
+   Typography & Eyebrows
+   ========================================================================= */
+
+.fontSyncopate {
+  font-family: var(--font-syncopate), 'Syncopate', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-weight: 700;
+}
+
+.editorialSerif {
+  font-family: var(--font-editorial, var(--font-cormorant, 'Cormorant Garamond', 'Playfair Display', Georgia, serif));
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-syncopate), 'Syncopate', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: var(--aff-sky);
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: var(--aff-sky);
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.45);
+}
+
+.eyebrowBotanical {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-syncopate), 'Syncopate', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  color: var(--aff-emerald-bright);
+}
+
+.eyebrowBotanical::before {
+  content: '';
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: var(--aff-emerald);
+  box-shadow: 0 0 8px var(--aff-emerald-bright);
+}
+
+.reviewBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--aff-radius-pill) !important;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  color: var(--aff-ink-charcoal);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================================
+   Buttons & Links
+   ========================================================================= */
+
+.heroPrimaryLink {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--aff-radius-pill) !important;
+  background: #080f1a;
+  color: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.85);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(8, 15, 26, 0.25), 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s var(--aff-spring);
+  text-decoration: none;
+}
+
+.heroPrimaryLink:hover {
+  background: #0f1c30;
+  border-color: #1e293b;
+  box-shadow: 0 12px 32px rgba(8, 15, 26, 0.35);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.heroPrimaryLink:focus-visible {
+  outline: 2px solid var(--aff-sky);
+  outline-offset: 3px;
+}
+
+.heroSupportingLink {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--aff-radius-pill) !important;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: var(--aff-ink-charcoal) !important;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s var(--aff-spring);
+  text-decoration: none;
+}
+
+.heroSupportingLink:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(15, 23, 42, 0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.heroSupportingLink:focus-visible {
+  outline: 2px solid var(--aff-sky);
+  outline-offset: 3px;
+}
+
+.botanicalWhiteButton {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--aff-radius-pill) !important;
+  background: #ffffff !important;
+  color: #02120b !important;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s var(--aff-spring);
+  text-decoration: none;
+}
+
+.botanicalWhiteButton:hover {
+  background: #f1f5f9 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+.botanicalWhiteButton:focus-visible {
+  outline: 2px solid #34d399;
+  outline-offset: 3px;
+}
+
+/* =========================================================================
+   1. HERO SECTION (Sunlit Swiss Alpine Chalet Sanctuary)
+   ========================================================================= */
+
+.heroSection {
+  position: relative;
+  min-height: min(94vh, 940px);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  background-color: #f1f5f9;
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 74% center;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  /* Luminous daylight scrim: high contrast for text on left, open daylight mountain view on right */
+  background: linear-gradient(
+    to right,
+    rgba(248, 250, 252, 0.94) 0%,
+    rgba(248, 250, 252, 0.85) 38%,
+    rgba(248, 250, 252, 0.45) 65%,
+    rgba(248, 250, 252, 0.05) 100%
+  );
+  z-index: 2;
+}
+
+@media (max-width: 1023px) {
+  .heroScrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(248, 250, 252, 0.96) 0%,
+      rgba(248, 250, 252, 0.88) 55%,
+      rgba(248, 250, 252, 0.98) 100%
+    );
+  }
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 84rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5.5rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .heroContainer {
+    padding: 7rem 2.5rem;
+  }
+}
+
+.heroGrid {
+  display: grid;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4.5rem;
+  }
+}
+
+.heroHeadline {
+  color: var(--aff-ink-charcoal) !important;
+}
+
+.heroDescription {
+  color: var(--aff-ink-slate) !important;
+}
+
+/* Floating Frosted Glass Dossier Card */
+.glassAside {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--aff-border-glass);
+  border-radius: var(--aff-radius-card) !important;
+  padding: 2.25rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.glassAside::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--aff-sky), transparent);
+}
+
+.asideHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.asideDossierBadge {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--aff-sky);
+  font-family: var(--font-syncopate), 'Syncopate', sans-serif;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background: var(--aff-sky-soft);
+  border: 1px solid var(--aff-border-sky);
+}
+
+.asideItem {
+  display: flex;
+  flex-direction: column;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.asideItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.asideDt {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--aff-ink-muted);
+}
+
+.asideDd {
+  margin-top: 0.35rem;
+  padding-left: 3.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--aff-ink-charcoal);
+}
+
+.asideIconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--aff-sky-soft);
+  border: 1px solid var(--aff-border-sky);
+  color: var(--aff-sky);
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   2. FIT PROFILES (Crisp Swiss Daylight Studio)
+   ========================================================================= */
+
+.fitSection {
+  background-color: var(--aff-white);
+  color: var(--aff-ink-charcoal);
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .fitSection {
+    padding: 8rem 2.5rem;
+  }
+}
+
+.fitCard {
+  background: var(--aff-white);
+  border: 1px solid #e2e8f0;
+  border-radius: var(--aff-radius-card) !important;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  transition: all 0.35s var(--aff-spring);
+  display: flex;
+  flex-direction: column;
+}
+
+.fitCard:hover {
+  transform: translateY(-6px);
+  border-color: #cbd5e1;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+}
+
+.fitImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+
+.fitImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--aff-spring);
+}
+
+.fitCard:hover .fitImage {
+  transform: scale(1.04);
+}
+
+.fitBadgeCircle {
+  position: absolute;
+  bottom: -1.25rem;
+  left: 1.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background: var(--aff-white);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--aff-sky);
+  z-index: 2;
+}
+
+.fitCardBody {
+  padding: 2.25rem 1.75rem 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.fitCardTitle {
+  color: var(--aff-ink-charcoal) !important;
+}
+
+.fitCardDescription {
+  color: var(--aff-ink-slate) !important;
+}
+
+/* =========================================================================
+   3. THE PROCESS (Deep Botanical Organic Night)
+   ========================================================================= */
+
+.processSection {
+  background-color: var(--aff-botanical-bg);
+  background-image: linear-gradient(135deg, rgba(2, 18, 11, 0.94) 0%, rgba(3, 26, 17, 0.88) 100%), url('/images/chambers/hbot-redesign/leaves-hd.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  color: #ffffff;
+  position: relative;
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .processSection {
+    padding: 8rem 2.5rem;
+  }
+}
+
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .stepsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.stepTile {
+  background: var(--aff-botanical-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: var(--aff-radius-card) !important;
+  padding: 1.75rem;
+  transition: all 0.3s var(--aff-spring);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepTile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.12);
+}
+
+.stepNumberCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--aff-emerald-bright);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-family: var(--font-syncopate), 'Syncopate', sans-serif;
+}
+
+/* =========================================================================
+   4. PROOF CHECKLIST (Pale Alpine Glacier Mountain Daylight)
+   ========================================================================= */
+
+.proofSection {
+  background-color: var(--aff-glacier-bg);
+  background-image: linear-gradient(to bottom, rgba(241, 246, 250, 0.94) 0%, rgba(241, 246, 250, 0.84) 100%), url('/images/consultation/alpine-landscape.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--aff-ink-charcoal);
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .proofSection {
+    padding: 8rem 2.5rem;
+  }
+}
+
+.proofHeadline {
+  color: var(--aff-ink-charcoal) !important;
+}
+
+.proofCard {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(203, 213, 225, 0.75);
+  border-radius: var(--aff-radius-card) !important;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s var(--aff-spring);
+}
+
+.proofCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--aff-sky-bright);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+}
+
+.proofCardTitle {
+  color: var(--aff-ink-charcoal) !important;
+}
+
+.proofCardDesc {
+  color: var(--aff-ink-slate) !important;
+}
+
+.proofIconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  background: var(--aff-sky-soft);
+  border: 1px solid var(--aff-border-sky);
+  color: var(--aff-sky);
+  margin-bottom: 1.25rem;
+}
+
+/* =========================================================================
+   5. INQUIRY CONTEXT CHECKLIST (Twilight Mountain Lake Reflection)
+   ========================================================================= */
+
+.inquirySection {
+  background-color: var(--aff-twilight-bg);
+  background-image: linear-gradient(to right, rgba(5, 10, 20, 0.92) 0%, rgba(5, 10, 20, 0.72) 100%), url('/images/landing/testimonials-dusk-lake-v2.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  position: relative;
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 1024px) {
+  .inquirySection {
+    padding: 8rem 2.5rem;
+  }
+}
+
+.underlinedHeadline {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 8px;
+}
+
+.checklistItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.15rem 1.5rem;
+  background: var(--aff-twilight-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem !important;
+  transition: all 0.25s var(--aff-spring);
+}
+
+.checklistItem:hover {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(56, 189, 248, 0.35);
+  transform: translateX(4px);
+}
+
+.checkCircle {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 9999px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: var(--aff-sky-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+/* =========================================================================
+   6. PUBLIC RESOURCE DIRECTORY (Pale Daylight Ice Grid)
+   ========================================================================= */
+
+.resourceSection {
+  background-color: var(--aff-ice-canvas);
+  color: var(--aff-ink-charcoal);
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .resourceSection {
+    padding: 8rem 2.5rem;
+  }
+}
+
+.resourceHeadline {
+  color: var(--aff-ink-charcoal) !important;
+}
+
+.resourceGrid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 640px) {
+  .resourceGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .resourceGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .resourceGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.resourceCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 1.125rem !important;
+  padding: 1.75rem;
+  min-height: 11rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s var(--aff-spring);
+  text-decoration: none;
+  position: relative;
+}
+
+.resourceCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--aff-sky);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+.resourceCard:focus-visible {
+  outline: 2px solid var(--aff-sky);
+  outline-offset: 3px;
+}
+
+.resourceTitle {
+  font-weight: 600;
+  color: var(--aff-ink-charcoal);
+  font-size: 1rem;
+}
+
+.resourceDesc {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--aff-ink-slate);
+}
+
+.resourceIconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: var(--aff-sky-soft);
+  border: 1px solid var(--aff-border-sky);
+  color: var(--aff-sky);
+}
+
+/* =========================================================================
+   7. REVIEW STANDARDS (Deep Sapphire Ripple Wave Callout)
+   ========================================================================= */
+
+.standardsSection {
+  background-color: var(--aff-sapphire-bg);
+  background-image: linear-gradient(135deg, rgba(3, 12, 24, 0.94) 0%, rgba(6, 24, 48, 0.88) 100%), url('/images/footer/footer-ethereal-silk-flow.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 6.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+@media (min-width: 1024px) {
+  .standardsSection {
+    padding: 8rem 2.5rem;
+  }
+}
+
+.standardsCallout {
+  background: var(--aff-sapphire-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1.75rem !important;
+  padding: 2.75rem;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.standardsCallout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--aff-sky-bright), transparent);
+}
+
+@media (max-width: 767px) {
+  .standardsCallout {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+}
+
+/* =========================================================================
+   Reduced Motion
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPrimaryLink,
+  .heroSupportingLink,
+  .botanicalWhiteButton,
+  .fitCard,
+  .fitImage,
+  .stepTile,
+  .proofCard,
+  .checklistItem,
+  .resourceCard {
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "boundary": "Canonical source-local Nexus route registry for the public noindex workspace preview. This file does not authorize runtime, provider, database, deploy, cleanup, or public SEO mutation.",
+  "routes": [
+    {
+      "key": "workspace",
+      "pathname": "/nexus",
+      "pagePath": "app/nexus/page.tsx",
+      "loadingPath": "app/nexus/loading.tsx",
+      "errorPath": "app/nexus/error.tsx",
+      "componentName": "DashboardHome",
+      "componentPath": "components/partner/DashboardHome.tsx",
+      "requestTime": false,
+      "queryParams": []
+    },
+    {
+      "key": "academy",
+      "pathname": "/nexus/academy",
+      "pagePath": "app/nexus/academy/page.tsx",
+      "loadingPath": "app/nexus/academy/loading.tsx",
+      "errorPath": "app/nexus/academy/error.tsx",
+      "componentName": "Academy",
+      "componentPath": "components/partner/Academy.tsx",
+      "requestTime": true,
+      "queryParams": []
+    },
+    {
+      "key": "clients",
+      "pathname": "/nexus/clients",
+      "pagePath": "app/nexus/clients/page.tsx",
+      "loadingPath": "app/nexus/clients/loading.tsx",
+      "errorPath": "app/nexus/clients/error.tsx",
+      "componentName": "Nexus",
+      "componentPath": "components/partner/Nexus.tsx",
+      "requestTime": true,
+      "queryParams": ["action", "patient"]
+    },
+    {
+      "key": "docs",
+      "pathname": "/nexus/docs",
+      "pagePath": "app/nexus/docs/page.tsx",
+      "loadingPath": "app/nexus/docs/loading.tsx",
+      "errorPath": "app/nexus/docs/error.tsx",
+      "componentName": "ClientDocs",
+      "componentPath": "components/partner/ClientDocs.tsx",
+      "requestTime": true,
+      "queryParams": []
+    },
+    {
+      "key": "fleet",
+      "pathname": "/nexus/fleet",
+      "pagePath": "app/nexus/fleet/page.tsx",
+      "loadingPath": "app/nexus/fleet/loading.tsx",
+      "errorPath": "app/nexus/fleet/error.tsx",
+      "componentName": "FleetHealth",
+      "componentPath": "components/partner/FleetHealth.tsx",
+      "requestTime": true,
+      "queryParams": ["action", "device"]
+    },
+    {
+      "key": "service",
+      "pathname": "/nexus/service",
+      "pagePath": "app/nexus/service/page.tsx",
+      "loadingPath": "app/nexus/service/loading.tsx",
+      "errorPath": "app/nexus/service/error.tsx",
+      "componentName": "ServiceOperations",
+      "componentPath": "components/partner/ServiceOperations.tsx",
+      "requestTime": true,
+      "queryParams": []
+    },
+    {
+      "key": "studio",
+      "pathname": "/nexus/studio",
+      "pagePath": "app/nexus/studio/page.tsx",
+      "loadingPath": "app/nexus/studio/loading.tsx",
+      "errorPath": "app/nexus/studio/error.tsx",
+      "componentName": "PartnerStudio",
+      "componentPath": "components/partner/PartnerStudio.tsx",
+      "requestTime": true,
+      "queryParams": ["action"]
+    },
+    {
+      "key": "supplies",
+      "pathname": "/nexus/supplies",
+      "pagePath": "app/nexus/supplies/page.tsx",
+      "loadingPath": "app/nexus/supplies/loading.tsx",
+      "errorPath": "app/nexus/supplies/error.tsx",
+      "componentName": "SupplyShop",
+      "componentPath": "components/partner/SupplyShop.tsx",
+      "requestTime": true,
+      "queryParams": []
+    },
+    {
+      "key": "team",
+      "pathname": "/nexus/team",
+      "pagePath": "app/nexus/team/page.tsx",
+      "loadingPath": "app/nexus/team/loading.tsx",
+      "errorPath": "app/nexus/team/error.tsx",
+      "componentName": "TeamDashboard",
+      "componentPath": "components/partner/TeamDashboard.tsx",
+      "requestTime": true,
+      "queryParams": []
+    }
+  ]
+}

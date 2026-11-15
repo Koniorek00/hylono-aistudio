@@ -1,0 +1,498 @@
+/* Route-scoped styles for /delivery-installation-onboarding */
+
+.routeWrapper {
+  --color-hero-bg: #090e15;
+  --color-chalk-bg: #f7f6f2;
+  --color-blush-bg: #faf4ed;
+  --color-dark-panel: #0b1118;
+  --ease-elastic: cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--color-chalk-bg);
+  color: #0f172a;
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* ===== HERO SECTION ===== */
+.heroSection {
+  position: relative;
+  background-color: var(--color-hero-bg);
+  color: #ffffff;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  opacity: 0.85;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(9, 14, 21, 0.98) 0%,
+    rgba(9, 14, 21, 0.92) 40%,
+    rgba(9, 14, 21, 0.65) 70%,
+    rgba(9, 14, 21, 0.3) 100%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .heroScrim {
+    background: linear-gradient(
+      180deg,
+      rgba(9, 14, 21, 0.95) 0%,
+      rgba(9, 14, 21, 0.88) 60%,
+      rgba(9, 14, 21, 0.98) 100%
+    );
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+
+/* Step Rail */
+.stepRail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: relative;
+}
+
+.stepRailTrack {
+  position: absolute;
+  left: 0.6875rem;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(34, 211, 238, 0.8) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+}
+
+.stepRailItem {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+.stepDot {
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(9, 14, 21, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s var(--ease-elastic);
+}
+
+.stepDotActive {
+  border-color: #22d3ee;
+  background: rgba(6, 182, 212, 0.15);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.4);
+}
+
+.stepDotInner {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #22d3ee;
+}
+
+.stepLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stepLabelActive {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Telemetry Bar */
+.telemetryBar {
+  margin-top: 3.5rem;
+  background: rgba(11, 17, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+}
+
+/* Check Cards Section */
+.checkGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .checkGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .checkGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.checkCard {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s var(--ease-elastic), box-shadow 0.25s var(--ease-elastic), border-color 0.25s var(--ease-elastic);
+}
+
+.checkCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+  border-color: rgba(203, 213, 225, 1);
+}
+
+.checkImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.checkImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-elastic);
+}
+
+.checkCard:hover .checkImage {
+  transform: scale(1.03);
+}
+
+.checkBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0f172a;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Maintainer Card */
+.maintainerCard {
+  background-color: #0b1118;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.maintainerGrid {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .maintainerGrid {
+    flex-direction: row;
+  }
+}
+
+.maintainerPhotoCol {
+  position: relative;
+  width: 100%;
+  height: 13rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .maintainerPhotoCol {
+    width: 36%;
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+.maintainerPhoto {
+  object-fit: cover;
+  object-position: center;
+}
+
+.maintainerPhotoScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(11, 17, 24, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .maintainerPhotoScrim {
+    background: linear-gradient(
+      90deg,
+      transparent 50%,
+      rgba(11, 17, 24, 0.95) 100%
+    );
+  }
+}
+
+.maintainerContentCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.maintainerContentCol :global(aside) {
+  background: transparent !important;
+  border: none !important;
+  padding: 1.25rem !important;
+  height: 100% !important;
+}
+
+@media (min-width: 640px) {
+  .maintainerContentCol :global(aside) {
+    padding: 1.5rem !important;
+  }
+}
+
+.maintainerContentCol :global(dl) {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  gap: 0.75rem !important;
+}
+
+@media (min-width: 640px) {
+  .maintainerContentCol :global(dl) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Boundaries Card */
+.boundariesCard {
+  background: #fff9f4;
+  border: 1px solid rgba(244, 218, 203, 0.7);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.boundaryItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(235, 210, 195, 0.5);
+}
+
+.boundaryItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.boundaryIconWrap {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  color: #c2410c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.125rem;
+}
+
+/* 6 Route Cards */
+.routeGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .routeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .routeGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .routeGrid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.routeCard {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-elastic), box-shadow 0.25s var(--ease-elastic), border-color 0.25s var(--ease-elastic);
+}
+
+.routeCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+  border-color: rgba(203, 213, 225, 1);
+}
+
+.routeImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.routeImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-elastic);
+}
+
+.routeCard:hover .routeImage {
+  transform: scale(1.04);
+}
+
+.routeArrowCircle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  transition: all 0.2s var(--ease-elastic);
+  flex-shrink: 0;
+}
+
+.routeCard:hover .routeArrowCircle {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  transform: translateX(2px);
+}
+
+/* Quick Exits Bar */
+.quickExitsBar {
+  position: relative;
+  background: #0b1118;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.75rem;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.quickExitsAmbientBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.quickExitPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.5rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.2s var(--ease-elastic);
+}
+
+.quickExitPill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(34, 211, 238, 0.4);
+  transform: translateY(-1px);
+}
+
+.quickExitIconWrap {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #22d3ee;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .checkCard,
+  .checkImage,
+  .routeCard,
+  .routeImage,
+  .routeArrowCircle,
+  .quickExitPill,
+  .stepDot {
+    transition: none !important;
+    transform: none !important;
+  }
+}
