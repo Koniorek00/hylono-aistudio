@@ -1,4 +1,4 @@
-import { priceBookMonthlyText, priceBookText } from '@/lib/money';
+import { priceBookMonthlyText, priceBookText } from '../lib/money';
 
 export interface ConditionModality {
   slug: 'HBOT' | 'H2' | 'RLT' | 'PEMF';

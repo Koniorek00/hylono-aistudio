@@ -1,4 +1,4 @@
-import { priceBookMonthlyText, priceBookText } from '@/lib/money';
+import { priceBookMonthlyText, priceBookText } from '../lib/money';
 
 export interface Goal {
   slug: string;

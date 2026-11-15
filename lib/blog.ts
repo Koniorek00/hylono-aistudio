@@ -1,4 +1,4 @@
-import { BLOG_POSTS, type BlogPost } from '@/constants/content';
+import { BLOG_POSTS, type BlogPost } from '../constants/content';
 
 export const toBlogSlug = (title: string): string =>
   title

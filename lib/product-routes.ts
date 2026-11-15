@@ -1,4 +1,4 @@
-import { TechType } from '@/types';
+import { TechType } from '../types';
 
 const TECH_TYPES = Object.values(TechType) as TechType[];
 const NON_INDEXABLE_PRODUCT_ROUTE_SLUG_SET = new Set([
